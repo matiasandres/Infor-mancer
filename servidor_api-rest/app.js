@@ -17,7 +17,11 @@ app.use(function(req, res, next) {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Importa Rutas
+let apiRoutes = require('./routes/api.routes');
 
+// Rutas
+app.use('/api', apiRoutes);  // agrega las rutas al servidor
 app.get('/', (req, res, next)=>{        // escucha una peticion GET en el servidor
     res.status(200).jsonp({ok: true, mensaje: 'Todo Bien'});    // respuesta para peticion al servidor
 });
