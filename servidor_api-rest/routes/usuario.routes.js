@@ -36,7 +36,9 @@ app.put('/', mdVerificaToken.verificaToken, (req, res) => {
     let newUsuario = {      // crea un nuevo usuario para ejecutar los cambios
         nombre: req.body.nombre,
         password: bcrypt.hashSync(req.body.password, 10),
-        TwoFAActivo: req.body.TwoFAActivo
+        token2FA: req.body.token2FA,
+        Activo2FA: req.body.Activo2FA,
+        activo: req.body.activo
     };
     Usuario.findOneAndUpdate({_id: req.usuario._id},    // busca el usuario por el id recibido de la validacion del token
         newUsuario, // datos del usuario por actualizar
