@@ -49,7 +49,7 @@ app.post('/', (req, res) => {       // Solicitud POST de la ruta para iniciar se
 // Metodo que devuelve el token de autorizacion de 2 factores, para ingresarlo al usuario
 app.get('/2fa', mdVerificaToken.verificaToken, (req, res)=>{
     var secret = speakeasy.generateSecret({length: 20});        // genera el token 2FA
-    res.status(200).jsonp({token2FA: secret.base32});           // envia al cliente el token 2FA 
+    res.status(200).jsonp({token2FA: secret.base32, url:secret.otpauth_url});           // envia al cliente el token 2FA 
 });
 
 // metodo para comprobar que la clave de autenticador coincide con el token

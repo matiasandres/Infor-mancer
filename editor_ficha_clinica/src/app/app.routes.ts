@@ -2,10 +2,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuardService } from './modulos/usuario/services/auth-guard.service';
 import { LoginComponent } from './modulos/usuario/components/login/login.component';
-import { PerfilComponent } from './modulos/usuario/components/perfil/perfil.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 const routes: Routes = [
-    { path: '', component: PerfilComponent , canActivate: [AuthGuardService] },
+    { path: '', component: InicioComponent , canActivate: [AuthGuardService] },
     { path: 'login', component: LoginComponent },
 
     // otherwise redirect to home

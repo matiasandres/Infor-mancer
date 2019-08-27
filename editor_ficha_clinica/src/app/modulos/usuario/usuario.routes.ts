@@ -4,6 +4,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './components/login/login.component';
 import { RecuperaPassComponent } from './components/recupera-pass/recupera-pass.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { TwoFactorConfigComponent } from './components/two-factor-config/two-factor-config.component';
 
 const usuarioRouting: Routes = [
         {
@@ -26,6 +27,11 @@ const usuarioRouting: Routes = [
             path: 'recupera',
             component: RecuperaPassComponent,
             data: { title: 'Recuperar Contraseña' }
+        },
+        {
+            path: 'configuracion_dos_factores',
+            component: TwoFactorConfigComponent,
+            data: { title: 'Autenticacion de 2 Factores'}
         }
         
 ];

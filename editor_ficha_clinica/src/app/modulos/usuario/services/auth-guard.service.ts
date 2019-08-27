@@ -12,7 +12,6 @@ export class AuthGuardService implements CanActivate {
   constructor( public _usuarioService: UsuarioService, public router: Router) { }
 
   canActivate(): boolean {
-    
     if (this._usuarioService.estaLogueado() && !this.jwt.isTokenExpired(this._usuarioService.token)) {    // Chequea que el usuario tenga un token y que este no este caducado
       //console.log('Paso LoginGuard');
       return true;    
