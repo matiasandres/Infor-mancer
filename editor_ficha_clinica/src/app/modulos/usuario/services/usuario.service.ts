@@ -106,4 +106,7 @@ export class UsuarioService {
   actualizaPassword(pass){
     return this.http.post<any>(URL_USUARIOS+`/cambia_password${this.getToken()}`, {password:pass});
   }
+  registrarUsuario(usuario){
+    return this.http.post<any>(URL_USUARIOS+`/${this.getToken()}`, usuario);
+  }
 }
