@@ -6,10 +6,11 @@ import { RecuperaPassComponent } from './components/recupera-pass/recupera-pass.
 import { RegistroComponent } from './components/registro/registro.component';
 import { USER_ROUTES } from './usuario.routes';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import { UsuarioService } from './services/usuario.service';
 import { TwoFactorConfigComponent } from './components/two-factor-config/two-factor-config.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { Verificar2FAComponent } from './components/verificar2-fa/verificar2-fa.component';
 
 @NgModule({
   declarations: [
@@ -17,17 +18,20 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     PerfilComponent,
     RecuperaPassComponent,
     RegistroComponent,
-    TwoFactorConfigComponent
+    TwoFactorConfigComponent,
+    Verificar2FAComponent
   ],
   imports: [
     CommonModule,
     USER_ROUTES,      // rutas del modulo
     HttpClientModule,
     FormsModule, 
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    ReactiveFormsModule
   ],
   providers: [
-    UsuarioService
+    UsuarioService,
+    FormBuilder
   ]
 })
 export class UsuarioModule { }

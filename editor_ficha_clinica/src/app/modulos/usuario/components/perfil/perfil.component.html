@@ -28,7 +28,7 @@
                                     <div class="form-row">
                                         
                                     </div>
-                                    <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Guardar</button></div>
+                                    <div class="form-group"><button (click)="guardarDatos()" class="btn btn-primary btn-sm" type="submit">Guardar</button></div>
                                 </form>
                             </div>
                         </div>
@@ -43,24 +43,25 @@
                                 <p class="text-primary m-0 font-weight-bold">Seguridad</p>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form [formGroup]="passwordForm" (ngSubmit)="cambiaPassword()">
                                     <div class="form-row">
                                         <div class="col-4">
-                                            <div class="form-group"><label for="username"><strong>Contraseña Antigua</strong></label><input class="form-control" type="password" name="pass"></div>
+                                            <div class="form-group"><label for="username"><strong>Contraseña Antigua</strong></label><input formControlName="password" class="form-control" type="password"></div>
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group"><label for="email"><strong>Nueva Contraseña</strong></label><input class="form-control" type="password" name="nueva"></div>
+                                            <div class="form-group"><label  for="email"><strong>Nueva Contraseña</strong></label><input formControlName="password_nueva" class="form-control" type="password"></div>
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group"><label for="email"><strong>Confirmar Contraseña</strong></label><input class="form-control" type="password" name="confirmar"></div>
+                                            <div class="form-group"><label for="email"><strong>Confirmar Contraseña</strong></label><input formControlName="password_confirma" class="form-control" type="password"></div>
                                         </div>
                                     </div>
-                                    <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Guardar</button></div>
+                                    <div class="form-group"><button [disabled]="passwordForm.invalid" class="btn btn-primary btn-sm" type="submit" >Guardar</button></div>
                                 </form>
                                 <h4>Autenticación de 2 Factores</h4>
                                 <hr>
                                 <div class="form-row">
-                                    <button class="btn btn-primary btn-sm" [routerLink]="['/configuracion_dos_factores']" >Configurar</button>
+                                    <button *ngIf="!usuario.Activo2FA" class="btn btn-success btn-sm" [routerLink]="['/configuracion_dos_factores']" >Configurar</button>
+                                    <button *ngIf="usuario.Activo2FA" class="btn btn-danger btn-sm"  [routerLink]="['/configuracion_dos_factores']" >Deshabilitar</button>                                    
                                 </div>
                             </div>
                         </div>

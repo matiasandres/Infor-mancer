@@ -39,6 +39,18 @@ app.post('/confirmar_password',mdVerificaToken.verificaToken , (req, res) => {
         return res.status(200).jsonp(bcrypt.compareSync(req.body.password, usuario.password))   // envia la respuesta de comparar la contraseña del usuario con la que envio el cliente, devuelve true si coinciden, false en caso contrario
     });
 });
+// Comprueba password de usuario
+app.post('/cambia_password',mdVerificaToken.verificaToken , (req, res) => {
+    let newUsuario = {      // crea un nuevo usuario para ejecutar los cambios
+        password: bcrypt.hashSync(req.body.password, 10)    // encripta nueva password
+    };
+    Usuario.findOneAndUpdate({_id: req.usuario._id},    // busca el usuario por el id recibido de la validacion del token
+        newUsuario, // datos del usuario por actualizar
+        (err, usuario)=>{   // callback del metodo 
+            if(err) res.status(500).jsonp({ok:false, mensaje: 'Error al Actualizar Usuario', errors: err});
+            res.status(200).jsonp({ok: true}); // si todo esta OK devuelve el nuevo objeto al cliente
+    });
+});
 
 // Actualizar Usuario
 app.put('/', mdVerificaToken.verificaToken, (req, res) => {

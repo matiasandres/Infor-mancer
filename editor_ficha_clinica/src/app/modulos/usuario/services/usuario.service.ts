@@ -12,6 +12,7 @@ export class UsuarioService {
 
   token = '';   // token devuelto por el Backen al momento de iniciar sesion
   usuario: Usuario;
+  login_verificado: true;
   constructor( 
     private router: Router, // manejador de rutas
     public http: HttpClient,
@@ -25,6 +26,27 @@ export class UsuarioService {
       return this.http.post(URL_USUARIOS+`/confirmar_password${this.getToken()}`, {password: pass});
     }
 
+    async verificarLogin(respu){
+      const { value: codigo } = await swal.fire({
+        title: 'Ingresa Código de Verificación',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off',
+          autocorrect: 'off'
+        }
+      })
+      if (codigo) {
+        this.verificar2FA({token2FA: respu.usuario.token2FA , codigo2FA: codigo}).subscribe(res=>{       
+          if(!res.verificado)return swal.fire('Error', 'Código Incorrecto', 'error');   // Muestra mensaje de error en caso de que devuelva alguno desde el backend
+              this.usuario = respu.usuario;   // guarda el objeto usuario devuelto del backen en el Servicio
+              this.token = respu.token; 
+              localStorage.setItem('token', respu.token);   // carga el token al localStorage para no perderlo en caso de refrescar la web
+              localStorage.setItem('usuario', JSON.stringify(respu.usuario)); // carga el objeto usuario devuelto del backend al localStorage para no perderlo en caso de refrescar la web
+              this.router.navigate(['/']);     // Regresa a la ruta de login
+            });
+      }
+    }
+
     login(usuario: Usuario, recuerdame: boolean = false): Promise<void> {   // metodo para iniciar sesion de usuario
       if (recuerdame) {
           localStorage.setItem('email', usuario.email);
@@ -33,10 +55,13 @@ export class UsuarioService {
       }
       return new Promise((resolve => {
           return this.http.post(URL_SERVICIOS+'/login', usuario).subscribe((res: any) => {
-              localStorage.setItem('token', res.token);   // carga el token al localStorage para no perderlo en caso de refrescar la web
-              localStorage.setItem('usuario', JSON.stringify(res.usuario)); // carga el objeto usuario devuelto del backend al localStorage para no perderlo en caso de refrescar la web
+            if(res.usuario.Activo2FA){
+              return this.verificarLogin(res);
+            }
               this.usuario = res.usuario;   // guarda el objeto usuario devuelto del backen en el Servicio
               this.token = res.token; 
+              localStorage.setItem('token', res.token);   // carga el token al localStorage para no perderlo en caso de refrescar la web
+              localStorage.setItem('usuario', JSON.stringify(res.usuario)); // carga el objeto usuario devuelto del backend al localStorage para no perderlo en caso de refrescar la web
               resolve();    // ejecuta correctamente la Promesa
           }, (res: any) => {
               swal.fire('Error al ingresar', res.error.mensaje, 'error');   // Muestra mensaje de error en caso de que devuelva alguno desde el backend
@@ -72,10 +97,13 @@ export class UsuarioService {
     return this.http.get<any>(URL_SERVICIOS+`/login/2fa${this.getToken()}`);  
   }
   verificar2FA(verificar){
-    return this.http.post(URL_SERVICIOS+'/login/2fa', verificar); // devuelve true o false, de la verificacion del token con el codigo
+    return this.http.post<any>(URL_SERVICIOS+'/login/2fa', verificar); // devuelve true o false, de la verificacion del token con el codigo
   }
 
   actualizarUsuario() { 
     return this.http.put<any>(URL_USUARIOS + '/' + this.getToken(), this.usuario);    // devuelve del backend el objeto {usuario: usuarioModificado, toke: nuevoTokenGenerado}
+  }
+  actualizaPassword(pass){
+    return this.http.post<any>(URL_USUARIOS+`/cambia_password${this.getToken()}`, {password:pass});
   }
 }
