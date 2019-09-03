@@ -6,6 +6,7 @@ import { NavbarComponent } from './shared/comnponents/navbar/navbar.component';
 import { UsuarioModule } from './modulos/usuario/usuario.module';
 import { appRoutingModule } from './app.routes';
 import { InicioComponent } from './inicio/inicio.component';
+import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InicioComponent } from './inicio/inicio.component';
   imports: [
     BrowserModule,
     appRoutingModule,
-    UsuarioModule
+    UsuarioModule,
+    EditorFichaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
