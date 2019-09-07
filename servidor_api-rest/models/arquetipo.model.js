@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //Datos Fijos 
 
 const arquetipoSchema = new Schema({
-    folio: { type: String },
+    nombre: { type: String },
     campos: []
 });
 
