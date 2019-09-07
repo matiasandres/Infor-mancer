@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RecuperaPassComponent } from './components/recupera-pass/recupera-pass.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { TwoFactorConfigComponent } from './components/two-factor-config/two-factor-config.component';
+import { UsuariosAdminComponent } from './components/usuarios-admin/usuarios-admin.component';
 
 const usuarioRouting: Routes = [
         {
@@ -31,7 +32,14 @@ const usuarioRouting: Routes = [
         {
             path: 'configuracion_dos_factores',
             component: TwoFactorConfigComponent,
+            canActivate: [AuthGuardService],
             data: { title: 'Autenticacion de 2 Factores'}
+        },
+        {
+            path: 'usuarios-admin',
+            component: UsuariosAdminComponent,
+            canActivate: [AuthGuardService],
+            data: { title: 'Administrador de Usuarios'}
         }
         
 ];

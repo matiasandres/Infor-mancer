@@ -109,4 +109,7 @@ export class UsuarioService {
   registrarUsuario(usuario){
     return this.http.post<any>(URL_USUARIOS+`/${this.getToken()}`, usuario);
   }
+  getUsuarios(){
+    return this.http.get<any>(URL_USUARIOS+`/${this.getToken()}`);
+  }
 }

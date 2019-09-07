@@ -11,6 +11,7 @@ import { UsuarioService } from './services/usuario.service';
 import { TwoFactorConfigComponent } from './components/two-factor-config/two-factor-config.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { Verificar2FAComponent } from './components/verificar2-fa/verificar2-fa.component';
+import { UsuariosAdminComponent } from './components/usuarios-admin/usuarios-admin.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { Verificar2FAComponent } from './components/verificar2-fa/verificar2-fa.
     RecuperaPassComponent,
     RegistroComponent,
     TwoFactorConfigComponent,
-    Verificar2FAComponent
+    Verificar2FAComponent,
+    UsuariosAdminComponent
   ],
   imports: [
     CommonModule,

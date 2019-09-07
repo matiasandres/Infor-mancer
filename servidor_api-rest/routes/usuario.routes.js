@@ -71,6 +71,25 @@ app.put('/', mdVerificaToken.verificaToken, (req, res) => {
             res.status(200).jsonp({ok: true, usuario: usuario, token: token}); // si todo esta OK devuelve el nuevo objeto al cliente
     });
 });
+// Obtiene todos los Usuarios
+app.get('/', mdVerificaToken.verificaToken, (req, res) => {    
+    Usuario.find({}, 'nombre email img roles Activo2FA activo') // que datos del usuario devolver de la consulta
+        .exec(
+            (err, usuarios) => {
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        msj: 'Error al consultar usuarios',
+                        errors: err
+                    });
+                }
+                return res.status(200).json({
+                    ok: true,
+                    usuarios: usuarios
+                });
+            }
+        );
+});
 
 
 
