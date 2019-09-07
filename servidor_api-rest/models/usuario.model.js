@@ -1,5 +1,5 @@
-const mongoose = required('mongoose');
-const uniqueValidator = required('mongoose-unique-validator');
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema; // 
 
 const usuarioSchema = new Schema({ // datos de objeto usuario permitidos
