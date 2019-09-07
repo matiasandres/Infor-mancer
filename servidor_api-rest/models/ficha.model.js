@@ -17,4 +17,4 @@ const fichaSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('Ficha', pacienteSchema); //Exportar el Modulo
+module.exports = mongoose.model('Ficha', fichaSchema); //Exportar el Modulo
