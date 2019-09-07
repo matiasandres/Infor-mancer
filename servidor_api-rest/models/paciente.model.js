@@ -9,7 +9,7 @@ const pacienteSchema = new Schema({
     direccion: { type: String, required: [true, "Direccion actual del Paciente"] },
     prevision: { type: String, required: [true, "Fonasa o Isapre"] },
     grupo_sangre: { type: String, required: [true, "Tipo de sangre completo, Ejemplo: AO+"] },
-    estatura_paciente: { type: Number, default: "None" },
+    estatura_paciente: { type: Number, default: 1 },
     fono: { type: String, required: [true, "Telefono o celular"] }
 });
 
