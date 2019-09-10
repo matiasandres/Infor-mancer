@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuarios-admin',
@@ -21,10 +22,14 @@ export class UsuariosAdminComponent implements OnInit {
   }
   activar2fa(user){
     console.log(user);
+    user.token2FA = '';
     this._usuarioService.updateUsuario(user).subscribe(res=>{
-      console.log(res);
+      Swal.fire('Información', `Usuario <b>${user.email}</b> modificado correctamente`, 'success');
     });
-
-
+  }
+  activarUsuario(user){
+    this._usuarioService.updateUsuario(user).subscribe(res=>{
+      Swal.fire('Información', `Usuario <b>${user.email}</b> modificado correctamente`, 'success');
+    });
   }
 }
