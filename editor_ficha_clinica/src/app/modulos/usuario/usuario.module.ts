@@ -13,6 +13,10 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { Verificar2FAComponent } from './components/verificar2-fa/verificar2-fa.component';
 import { UsuariosAdminComponent } from './components/usuarios-admin/usuarios-admin.component';
 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 @NgModule({
   declarations: [
     LoginComponent,   
@@ -29,7 +33,13 @@ import { UsuariosAdminComponent } from './components/usuarios-admin/usuarios-adm
     HttpClientModule,
     FormsModule, 
     NgxQRCodeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
+    /* == Angular Material == */
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatTooltipModule
+    /* ================== */
   ],
   providers: [
     UsuarioService,

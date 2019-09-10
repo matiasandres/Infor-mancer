@@ -2,7 +2,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav flex-nowrap ml-auto">
             <li class="nav-item mr-sm-2 active">
-                <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                <a class="nav-link" routerLink="/">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <li *ngIf="_usuarioService.isAdmin()" class="nav-item mr-sm-2 active">
+                <a class="nav-link" routerLink="usuarios-admin" routerLinkActive="active">Administrador de Usuarios </a>
+            </li>
+            <li class="nav-item mr-sm-2 active">
+                <a class="nav-link" routerLink="ficha" routerLinkActive="active">Ficha </a>
             </li>
             
             <div class="d-none d-sm-block topbar-divider"></div>

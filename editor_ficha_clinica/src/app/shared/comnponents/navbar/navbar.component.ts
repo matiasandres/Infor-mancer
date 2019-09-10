@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this._usuarioService.usuario);
   }
   
   logout(){

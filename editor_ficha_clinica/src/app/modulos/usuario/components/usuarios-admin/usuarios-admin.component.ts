@@ -19,5 +19,12 @@ export class UsuariosAdminComponent implements OnInit {
       console.log(this.usuarios);
     });
   }
+  activar2fa(user){
+    console.log(user);
+    this._usuarioService.updateUsuario(user).subscribe(res=>{
+      console.log(res);
+    });
 
+
+  }
 }

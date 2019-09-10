@@ -47,7 +47,6 @@ app.get('/:id',(req,res)=>{
                 });
             }
             return res.status(200).json(arquetipo)
-
         })
 });
 module.exports = app;

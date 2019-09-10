@@ -17,11 +17,26 @@
                     {{u.nombre}}
                 </td>
                 <td>{{u.email}} </td>
-                <td> </td>
-                <td *ngIf="u.Activo2FA">Activado</td><td *ngIf="!u.Activo2FA">Desactivado</td>
-                <td *ngIf="u.activo">Habilitado</td><td *ngIf="!u.activo">Inactivo</td>
+                <td> {{u.roles}} </td>
+                <td>
+                    <mat-slide-toggle
+                        (change)="activar2fa(u)"
+                        color="danger"
+                        matTooltip="Habilitar/Inhabilitar 2FA"
+                        [checked]="u.Activo2FA">                        
+                    </mat-slide-toggle>
+                </td>
+                <td>
+                    <mat-slide-toggle
+                        color="primary"
+                        matTooltip="Habilitar/Inhabilitar Usuario"
+                        [checked]="u.activo">                        
+                    </mat-slide-toggle>
+                </td>
+                
 
-                <td><button type="button" class="btn btn-danger"><i class="fas fa-check-square"></i></button> </td>
+                <td><button type="button" class="btn btn-danger">
+                </button> </td>
             </tr>
         </tbody>
     </table>

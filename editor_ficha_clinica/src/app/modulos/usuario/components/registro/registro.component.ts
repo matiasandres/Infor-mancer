@@ -37,7 +37,8 @@ export class RegistroComponent implements OnInit {
     let newUsuario: Usuario ={    // crea el nuevo objeto Usuario con los datos capturados desde el Formulario
       nombre: `${this.registroForm.value.nombre} ${this.registroForm.value.apellido}`,
       email: this.registroForm.value.email,
-      password: this.registroForm.value.password
+      password: this.registroForm.value.password,
+      roles: ['USUARIO']
     }
 
     this._usuarioService.registrarUsuario(newUsuario).subscribe(res=>{    // envia el nuevo usuario al backend

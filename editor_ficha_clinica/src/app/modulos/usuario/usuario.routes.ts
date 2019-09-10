@@ -6,6 +6,7 @@ import { RecuperaPassComponent } from './components/recupera-pass/recupera-pass.
 import { RegistroComponent } from './components/registro/registro.component';
 import { TwoFactorConfigComponent } from './components/two-factor-config/two-factor-config.component';
 import { UsuariosAdminComponent } from './components/usuarios-admin/usuarios-admin.component';
+import { AdminGuardService } from './services/admin-guard.service';
 
 const usuarioRouting: Routes = [
         {
@@ -38,7 +39,9 @@ const usuarioRouting: Routes = [
         {
             path: 'usuarios-admin',
             component: UsuariosAdminComponent,
-            canActivate: [AuthGuardService],
+            canActivate: [
+                AuthGuardService            // Bloquea la ruta si el usuario no esta logueado
+                , AdminGuardService],       // Bloquea la ruta si el usuario no es administrador
             data: { title: 'Administrador de Usuarios'}
         }
         
