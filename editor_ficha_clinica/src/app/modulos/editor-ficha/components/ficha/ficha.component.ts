@@ -8,9 +8,18 @@ import { FichaService } from '../../services/ficha.service';
 })
 export class FichaComponent implements OnInit {
 
-  constructor(private  _fichaService: FichaService()) { }
+  ficha: any;
+  rut = '19.874.598-7';
+  constructor(private _fichaService: FichaService) { }
 
   ngOnInit() {
+   
+  }
+
+  buscarFicha(){
+     this._fichaService.getFichaRut(this.rut).subscribe(f=>{
+      this.ficha = f;
+    });
   }
 
 }

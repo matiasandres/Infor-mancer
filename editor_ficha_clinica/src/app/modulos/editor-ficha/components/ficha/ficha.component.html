@@ -1,1 +1,14 @@
-<p><button > <button></p>
+
+<input type="text" [(ngModel)]="rut" >
+
+<button type="button" class="btn btn-primary" (click)="buscarFicha()" >Obtiene Ficha</button>
+
+<p *ngIf="ficha">
+    Paciente:  {{ficha.folio}}
+</p>
+
+<p *ngIf="!ficha">
+    No Existe Ficha
+</p>
+
+

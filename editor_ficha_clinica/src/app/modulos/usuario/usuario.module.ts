@@ -16,6 +16,9 @@ import { UsuariosAdminComponent } from './components/usuarios-admin/usuarios-adm
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
+
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -38,8 +41,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     /* == Angular Material == */
     BrowserAnimationsModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule,
     /* ================== */
+    NgbModule
   ],
   providers: [
     UsuarioService,

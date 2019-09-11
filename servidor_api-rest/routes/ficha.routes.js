@@ -85,12 +85,12 @@ app.get('/folio/:folio',(req,res)=>{
         })
 });
 app.get('/rut/:rut',(req,res)=>{
-    console.log(req.params.rut)
     Ficha.find()
         .populate( {path:'paciente',model:Paciente})
         .exec((err,fichas)=>{
             if (err){res.status(400).json({err:err})}
-            let ficha = fichas.filter(f=>f.paciente.rut == req.params.rut)
+            let ficha = fichas.filter(f =>f.paciente.rut == req.params.rut);  
+                      
             res.status(200).json(ficha[0])
             
         })

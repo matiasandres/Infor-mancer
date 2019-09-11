@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-usuarios-admin',
@@ -11,7 +13,8 @@ export class UsuariosAdminComponent implements OnInit {
 
   usuarios = [];
   constructor(
-    private _usuarioService: UsuarioService
+    private _usuarioService: UsuarioService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -31,5 +34,9 @@ export class UsuariosAdminComponent implements OnInit {
     this._usuarioService.updateUsuario(user).subscribe(res=>{
       Swal.fire('Información', `Usuario <b>${user.email}</b> modificado correctamente`, 'success');
     });
+  }
+
+  openDialog(content, user){
+    this.modalService.open(content, {size:'lg'});
   }
 }
