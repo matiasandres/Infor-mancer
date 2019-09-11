@@ -5,5 +5,6 @@ export class Usuario {
     token2FA?: string;
     Activo2FA?: boolean;
     activo?: boolean;
+    roles?: string[];
     _id?: string;    
 }

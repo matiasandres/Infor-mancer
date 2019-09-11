@@ -26,8 +26,8 @@ export class UsuarioService {
       return this.http.post(URL_USUARIOS+`/confirmar_password${this.getToken()}`, {password: pass});
     }
 
-    async verificarLogin(respu){
-      const { value: codigo } = await swal.fire({
+    async verificarLogin(respu){    // resuelve la autenticacion de 2 factores
+      const { value: codigo } = await swal.fire({ // pide ingreso del codigo de la app de autenticacion
         title: 'Ingresa Código de Verificación',
         input: 'text',
         inputAttributes: {
@@ -35,11 +35,11 @@ export class UsuarioService {
           autocorrect: 'off'
         }
       })
-      if (codigo) {
+      if (codigo) {   // si ya ingreso el codigo de la app de autenticacion
         this.verificar2FA({token2FA: respu.usuario.token2FA , codigo2FA: codigo}).subscribe(res=>{       
           if(!res.verificado)return swal.fire('Error', 'Código Incorrecto', 'error');   // Muestra mensaje de error en caso de que devuelva alguno desde el backend
-              this.usuario = respu.usuario;   // guarda el objeto usuario devuelto del backen en el Servicio
-              this.token = respu.token; 
+              this.usuario = respu.usuario;   // guarda el objeto usuario devuelto del backend en el Servicio
+              this.token = respu.token;     // guarda el token en el servicio
               localStorage.setItem('token', respu.token);   // carga el token al localStorage para no perderlo en caso de refrescar la web
               localStorage.setItem('usuario', JSON.stringify(respu.usuario)); // carga el objeto usuario devuelto del backend al localStorage para no perderlo en caso de refrescar la web
               this.router.navigate(['/']);     // Regresa a la ruta de login
@@ -55,7 +55,7 @@ export class UsuarioService {
       }
       return new Promise((resolve => {
           return this.http.post(URL_SERVICIOS+'/login', usuario).subscribe((res: any) => {
-            if(res.usuario.Activo2FA){
+            if(res.usuario.Activo2FA){    // si tiene la autenticacion de 2 factores habilitada pide el codigo de la app de autenticacion
               return this.verificarLogin(res);
             }
               this.usuario = res.usuario;   // guarda el objeto usuario devuelto del backen en el Servicio
@@ -63,7 +63,7 @@ export class UsuarioService {
               localStorage.setItem('token', res.token);   // carga el token al localStorage para no perderlo en caso de refrescar la web
               localStorage.setItem('usuario', JSON.stringify(res.usuario)); // carga el objeto usuario devuelto del backend al localStorage para no perderlo en caso de refrescar la web
               resolve();    // ejecuta correctamente la Promesa
-          }, (res: any) => {
+          }, (res: any) => {  // error de la promesa
               swal.fire('Error al ingresar', res.error.mensaje, 'error');   // Muestra mensaje de error en caso de que devuelva alguno desde el backend
           });
       }));
@@ -103,6 +103,10 @@ export class UsuarioService {
   actualizarUsuario() { 
     return this.http.put<any>(URL_USUARIOS + '/' + this.getToken(), this.usuario);    // devuelve del backend el objeto {usuario: usuarioModificado, toke: nuevoTokenGenerado}
   }
+  updateUsuario(user) { 
+    return this.http.put<any>(URL_USUARIOS + '/' + this.getToken(), user);    // devuelve del backend el objeto {usuario: usuarioModificado, toke: nuevoTokenGenerado}
+  }
+  
   actualizaPassword(pass){
     return this.http.post<any>(URL_USUARIOS+`/cambia_password${this.getToken()}`, {password:pass});
   }
@@ -111,5 +115,8 @@ export class UsuarioService {
   }
   getUsuarios(){
     return this.http.get<any>(URL_USUARIOS+`/${this.getToken()}`);
+  }
+  isAdmin(){
+    return this.usuario.roles.includes('ADMIN');
   }
 }

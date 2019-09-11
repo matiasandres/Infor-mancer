@@ -27,6 +27,13 @@ app.post('/', (req, res) => {       // Solicitud POST de la ruta para iniciar se
             });
         }
 
+        if(!usuario.activo){
+            return res.status(400).jsonp({
+                ok: false,
+                mensaje: 'Usuario No Habilitado!!'
+            });
+        }
+
         if (!bcrypt.compareSync(body.password, usuario.password)) {  // si la contraseña encriptada de la BD no coincide con la recibida desde la consulta
             return res.status(400).json({
                 ok: false,

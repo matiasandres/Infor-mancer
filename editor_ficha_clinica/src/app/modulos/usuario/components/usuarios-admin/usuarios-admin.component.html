@@ -1,5 +1,5 @@
-<div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-    <table class="table dataTable my-0" id="dataTable">
+<div class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
+    <table class="table dataTable my-0">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -13,15 +13,31 @@
         <tbody>
             <tr *ngFor="let u of usuarios">
                 <td>
-                    <img class="rounded-circle mr-2" width="30" height="30" src="assets/images/profile.jpg">
+                    <img alt="usurio imagen" class="rounded-circle mr-2" width="30" height="30" src="assets/images/profile.jpg">
                     {{u.nombre}}
                 </td>
                 <td>{{u.email}} </td>
-                <td> </td>
-                <td *ngIf="u.Activo2FA">Activado</td><td *ngIf="!u.Activo2FA">Desactivado</td>
-                <td *ngIf="u.activo">Habilitado</td><td *ngIf="!u.activo">Inactivo</td>
-
-                <td><button type="button" class="btn btn-danger"><i class="fas fa-check-square"></i></button> </td>
+                <td> {{u.roles}} </td>
+                <td>
+                    <mat-slide-toggle
+                        [disabled]="!u.Activo2FA"
+                        (change)="activar2fa(u)"
+                        color="danger"
+                        matTooltip="Desactivar 2FA"
+                        [(ngModel)]="u.Activo2FA">                        
+                    </mat-slide-toggle>
+                </td>
+                <td>
+                    <mat-slide-toggle
+                        (change)="activarUsuario(u)"
+                        color="primary"
+                        matTooltip="Habilitar/Inhabilitar Usuario"
+                        [(ngModel)]="u.activo">                        
+                    </mat-slide-toggle>
+                </td>
+                <td><button type="button" class="btn btn-info" matTooltip="Cambiar Privilegios de Usuario">
+                        <i class="fa fa-users"></i>
+                </button> </td>
             </tr>
         </tbody>
     </table>
