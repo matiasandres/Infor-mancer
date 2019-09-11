@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FichaService } from '../../services/ficha.service';
 
 @Component({
   selector: 'app-ficha',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FichaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private  _fichaService: FichaService()) { }
 
   ngOnInit() {
   }
