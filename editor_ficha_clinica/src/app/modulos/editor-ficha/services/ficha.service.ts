@@ -13,4 +13,7 @@ export class FichaService {
   getFichaRut(rut){
     return this.http.get<any>(URL_FICHAS+`/rut/${rut}/${this._usuarioService.getToken()}`);
   }
+  putModificarFicha(ficha){
+    return this.http.put<any>(URL_FICHAS+`/${ficha._id}/${this._usuarioService.getToken()}`,ficha);
+  }
 }

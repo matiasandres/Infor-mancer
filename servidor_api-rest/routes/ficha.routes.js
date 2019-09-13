@@ -66,6 +66,17 @@ app.post('/paciente',(req,res)=>{
     })
 });
 
+app.put('/:id',(req,res)=>{
+    let ficha_new = req.body
+    Ficha.findOneAndUpdate({_id:req.params.id},
+        ficha_new,
+        {new: true},
+        (err, fichanueva)=>{
+            if (err) res.status(400).json(err)
+            res.status(200).json(fichanueva)
+        })
+});
+
 //busqueda paciente
 app.get('/paciente/:id',(req,res)=>{
     Ficha.findOne({'paciente':req.params.id})
