@@ -1,17 +1,30 @@
-<div class="row">
-    <div class="col-sm-9">
-        <input type="text" [(ngModel)]="rut" >
-        <button type="button" class="btn btn-primary"  (click)="buscarFicha()" >Obtiene Ficha</button>
-        <div *ngIf="ficha">
-            <app-editor-arquetipos [ficha]="ficha"></app-editor-arquetipos>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <input type="text" [(ngModel)]="rut" [required]/>
+            <button type="button" class="btn btn-primary" (click)="buscarFicha()" >Obtiene Ficha</button>
         </div>
-        <p *ngIf="!ficha">
-            No Existe Ficha
-        </p>
+        <div class="col-sm-3">
+            modulo de importacion / arquetipos
+            modulo de importacion / app-editor-arquetiposmodulo de importacion / arquetipos
+            modulo de importacion / arquetipos
+            modulo de importacion / arquetipos
+            modulo de importacion / arquetipos
+            modulo de importacion / arquetipos
+            modulo de importacion / arquetipos
+            modulo de importacion / arquetipos  
+            modulo de importacion / arquetipos
+            modulo de importacion / arquetipos
+            modulo de importacion / arquetipos
+            modulo de importacion / arquetipos
+        </div>
     </div>
-    <div class="col-sm-3">
-        modulo de importacion / arquetipos
+    <div class="row">
+        <div class="col-sm-9">
+            <div *ngIf="ficha">
+                <app-editor-arquetipos [ficha]="ficha"></app-editor-arquetipos>
+            </div>
+        </div>        
     </div>
 </div>
-
 

@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class FichaComponent implements OnInit {
 
   ficha: any;
-  rut = '19.874.598-7';
+  rut = '0';
   constructor(private _fichaService: FichaService) { }
 
   ngOnInit() {
@@ -30,10 +30,10 @@ export class FichaComponent implements OnInit {
         focusConfirm: false,
         confirmButtonText:
           '<i class="fa fa-thumbs-up"></i> si',
-        confirmButtonAriaLabel: 'Thumbs up, great!',
+        confirmButtonAriaLabel: 'si',
         cancelButtonText:
         '<i class="fa fa-thumbs-down"></i> no',
-        cancelButtonAriaLabel: 'Thumbs down'
+        cancelButtonAriaLabel: 'no'
        })
       this.ficha = f;
     });

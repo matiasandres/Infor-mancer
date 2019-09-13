@@ -9,9 +9,12 @@ import { FichaService } from '../../services/ficha.service';
 export class EditorArquetiposComponent implements OnInit {
 
   @Input() ficha:any;
+  aRay = [];  
   constructor(private _fichaService: FichaService) { }
 
   ngOnInit() {
+    
+    console.log(this.ficha.arquetipos)
   }
   ModificarFicha(){
     this._fichaService.putModificarFicha(this.ficha).subscribe(ficha=>{

@@ -102,7 +102,7 @@ app.get('/rut/:rut',(req,res)=>{
             if (err){res.status(400).json({err:err})}
             let ficha = fichas.filter(f =>f.paciente.rut == req.params.rut);  
                       
-            res.status(200).json(ficha[0])
+            res.status(200).jsonp(ficha[0])
             
         })
 });
