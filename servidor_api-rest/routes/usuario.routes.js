@@ -61,8 +61,8 @@ app.put('/', mdVerificaToken.verificaToken, (req, res) => {
         activo: req.body.activo
     };
     Usuario.findOneAndUpdate({_id: req.body._id},    // busca el usuario por el id recibido de la validacion del token
-        newUsuario, // datos del usuario por actualizar
-        {new: true},   // para devolver el usaurio modificado o no
+        newUsuario,         // datos del usuario por actualizar
+        {new: true},        // para devolver el usaurio modificado o no
         (err, usuario)=>{   // callback del metodo 
 
             if(err) res.status(500).jsonp({ok:false, mensaje: 'Error al Actualizar Usuario', errors: err});

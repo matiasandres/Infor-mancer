@@ -19,7 +19,7 @@ const fichaSchema = new Schema({
     folio: { type: Number, required: [true, "Numero de ingrso del paciente"] },
     paciente: { type: mongoose.Schema.Types.ObjectId, ref: 'Paciente'},
     fecha_ingreso: { type: Date, requiered: [true, "Primer Ingreso del Paciente "] },
-    arquetipos: [arquetipo : arquetiposSchema]
+    arquetipos: [ arquetiposSchema]
 
 });
 module.exports = mongoose.model('ficha', fichaSchema);
