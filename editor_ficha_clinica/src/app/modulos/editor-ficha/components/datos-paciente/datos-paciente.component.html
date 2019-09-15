@@ -1,14 +1,41 @@
-<div class="card col-sm-9">
-    <div class="card-body">
-        <h5 class="card-title">Datos del paciente</h5>
-        <div class="card-text">
-            Nombre: <input type="text" value={{ficha.paciente.nombre}}  align="right" readonly="readonly"><br>
-            Rut: <input type="text" value={{ficha.paciente.rut}} readonly="readonly"><br>
-            Fecha de nacimiento: <input type="text" value={{ficha.paciente.fecha_nacimiento}}><br>
-            Estatura:<input type="text" value={{ficha.paciente.estatura_paciente}} readonly="readonly"><br>
-            Sexo: <input type="text" value={{ficha.paciente.sexo}} readonly="readonly"><br>
-            Grupo sanguineo: <input type="text" value={{ficha.paciente.grupo_sangre}} readonly="readonly"><br>
+    <div class="card border-primary mb-3" style="max-width: 80rem;">
+        <div class="card-body">
+            <h5 class="card-title">Datos del paciente</h5>
+            <div class="card-text">
 
+                <img src="assets/images/profile.jpg" class="rounded float-right" alt="..." height="60" width="70">
+
+                    <table class="table table-borderless table-dark" style="max-width: 50rem">
+                            <thead>
+                              <tr class="bg-primary">
+                                <th scope="col">Nombre</th>
+                                <th scope="col">{{ficha.paciente.nombre}}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="bg-primary">
+                                <th scope="row">Rut</th>
+                                <td>{{ficha.paciente.rut}}</td>
+                              </tr>
+                              <tr class="bg-primary">
+                                <th scope="row">Fecha de nacimiento</th>
+                                <td>{{ficha.paciente.fecha_nacimiento}}</td>
+                              </tr>
+                              <tr class="bg-primary">
+                                <th scope="row">Estatura</th>
+                                <td colspan="2">{{ficha.paciente.estatura_paciente}}cm</td>
+                              </tr>
+                              <tr class="bg-primary">
+                                    <th scope="row">Sexo</th>
+                                    <td colspan="2">{{ficha.paciente.sexo}}</td>
+                                  </tr>
+                                  <tr class="bg-primary">
+                                        <th scope="row">Grupo sanguineo</th>
+                                        <td colspan="2">{{ficha.paciente.grupo_sangre}}</td>
+                                      </tr>
+                            </tbody>
+                          </table>
+
+            </div>
         </div>
     </div>
-</div>
