@@ -15,7 +15,6 @@ export class EditorArquetiposComponent implements OnInit {
 
   ngOnInit() {
     
-    console.log("FICHA:::", this.ficha.arquetipos);
   }
   ModificarFicha(){
     this._fichaService.putModificarFicha(this.ficha).subscribe(ficha=>{

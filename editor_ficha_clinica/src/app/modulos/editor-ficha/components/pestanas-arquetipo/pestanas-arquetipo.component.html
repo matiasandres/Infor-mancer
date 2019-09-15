@@ -1,0 +1,28 @@
+<mat-tab-group>
+    <mat-tab label="">
+        <!-- <app-editor-arquetipos [ficha]="ficha"></app-editor-arquetipos> -->
+    </mat-tab>
+
+    <div *ngFor="let arquetipos of ficha.arquetipos">
+        <mat-tab label="{{arquetipos.nombre}}">
+        <div *ngFor="let arquetipo of arquetipos.arquetipo">
+            
+                <div *ngIf="arquetipo.tipo == 'String'" class="col-sm-9">
+                        {{arquetipo.campo | titlecase}}: <input type="text" [(ngModel)]="arquetipo.valor"readonly="readonly" >
+                    </div>
+                    <div *ngIf="arquetipo.tipo == 'Date'" class="col-sm-9" >
+                        {{arquetipo.campo | titlecase}}: <input type="date" readonly="readonly"><br>
+                    </div>
+                    <div *ngIf="arquetipo.tipo == 'Number'" class="col-sm-9">
+                        {{arquetipo.campo | titlecase}}: <input type="number" readonly="readonly"><br>
+                    </div>
+                    <div *ngIf="arquetipo.tipo == 'Checkbox'" class="col-sm-9">
+                        {{arquetipo.campo | titlecase}}:<input type="checkbox" value="alto" placeholder="Alto" ><br>
+                    </div>
+                    <div *ngIf="arquetipo.tipo == 'Radio'" class="col-sm-9">
+                        {{arquetipo.campo | titlecase}}: <input type="radio" value="alto">Alto <br>
+                </div>
+        </div>
+        </mat-tab>
+    </div>
+</mat-tab-group>

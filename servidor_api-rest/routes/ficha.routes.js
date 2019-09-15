@@ -108,4 +108,5 @@ app.get('/rut/:rut',mdVerificaToken.verificaToken,(req,res)=>{
         })
 });
 
+
 module.exports = app;

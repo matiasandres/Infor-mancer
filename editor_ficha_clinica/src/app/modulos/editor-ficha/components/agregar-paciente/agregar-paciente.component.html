@@ -1,0 +1,47 @@
+<div class="card border-primary mb-3" style="max-width: 80rem;">
+    <div class="card-body">
+        <h5 class="card-title">Datos del paciente</h5>
+        <div class="card-text">
+            <form action="agregar-paciente.component.ts" (click)="agregarPaciente()">
+
+                <table class="table table-borderless table-dark" style="max-width: 50rem">
+                        <thead>
+                          <tr class="bg-primary">
+                            <th scope="col">Nombre</th>
+                            <th scope="col"><input type="text" id="nombre" ></th>
+                            <th scope="row">Sexo</th>
+                            <td colspan="2"><input type="text" id="sexo" ></td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="bg-primary">
+                            <th scope="row">Rut</th>
+                            <td><input type="text" id="rut" ></td>
+                            <th scope="row">Direccion</th>
+                            <td colspan="2"><input type="text" id="direccion" ></td>
+                          </tr>
+                          <tr class="bg-primary">
+                            <th scope="row">Fecha de nacimiento</th>
+                            <td><input type="date" id="fecha_nacimiento"></td>
+                            <th scope="row">Prevision</th>
+                            <td colspan="2"><input type="text" id="prevision"></td>
+                          </tr>
+                          <tr class="bg-primary">
+                            <th scope="row">Estatura</th>
+                            <td colspan="2"><input type="number" id="estatura_paciente">cm</td>
+                            <th scope="row">Grupo sanguineo</th>
+                            <td colspan="2"><input type="text" id="grupo_sangre"></td>
+                            
+                          </tr>
+                          <tr class="bg-primary">
+                                <th scope="row">Fono</th>
+                                <td colspan="2"><input type="text" id="fono"></td>
+                                <th></th>
+                                <td><button class="btn btn-success" (click)="agregarPaciente()">Agregar paciente</button></td>
+                        </tr>
+                        </tbody>
+                      </table>
+            </form>
+        </div>
+    </div>
+</div>

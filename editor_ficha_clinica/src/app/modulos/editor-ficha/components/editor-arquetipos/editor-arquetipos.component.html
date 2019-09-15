@@ -2,8 +2,9 @@
 <input type="date" [(ngModel)]="ficha.fecha_ingreso">
 <button (click)="ModificarFicha()">Modificar</button> -->
 
+
 <div *ngFor="let arquetipos of ficha.arquetipos">
-        <div *ngFor="let arquetipo of arquetipos.arquetipo">
+    <div *ngFor="let arquetipo of arquetipos.arquetipo">
             <div *ngIf="arquetipo.tipo == 'String'" class="col-sm-9">
                 {{arquetipo.campo | titlecase}}: <input type="text" [(ngModel)]="arquetipo.valor">
             </div>
@@ -19,8 +20,9 @@
             <div *ngIf="arquetipo.tipo == 'Radio'" class="col-sm-9">
                 {{arquetipo.campo | titlecase}}: <input type="radio" value="alto">Alto <br>
             </div>
-        </div>
-        <div class="col-sm-9" style="text-align: right">
-            <button (click)="ModificarFicha()" class="btn btn-primary" >Modificar</button>
-        </div>   
-</div> 
+    </div>
+    <div class="col-sm-9" style="text-align: right">
+        <button (click)="ModificarFicha()" class="btn btn-primary" >Modificar</button>
+    </div>  
+</div>
+

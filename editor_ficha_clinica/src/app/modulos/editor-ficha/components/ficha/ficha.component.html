@@ -2,10 +2,12 @@
     <div class="row">
         <div class="col-sm-9">
             <input type="text" [(ngModel)]="rut" [required]/>
-            <button type="button" class="btn btn-primary" (click)="buscarFicha()" >Obtiene Ficha</button>
+            <button type="button" class="btn btn-primary" (click)="buscarFicha()" >Obtiene Ficha</button><br><br>
             <div *ngIf="ficha">
                 <app-datos-paciente [ficha]="ficha"></app-datos-paciente><br>
-                <app-editor-arquetipos [ficha]="ficha"></app-editor-arquetipos>
+                <app-pestanas-arquetipo [ficha]="ficha"></app-pestanas-arquetipo>
+            </div>
+            <div *ngIf="!ficha">
             </div>
         </div>
         <div class="col-sm-3">

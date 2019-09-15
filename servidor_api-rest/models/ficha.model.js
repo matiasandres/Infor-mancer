@@ -12,6 +12,7 @@ const arquetipoSchema = new Schema({
 const arquetiposSchema = new Schema({
     usuario:        {type: mongoose.Schema.Types.ObjectId, ref: 'usuario'},
     fecha_atencion: {type:Date},
+    nombre:{type:String},
     arquetipo:      [arquetipoSchema]
 })
 

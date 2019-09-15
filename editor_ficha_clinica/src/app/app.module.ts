@@ -7,6 +7,7 @@ import { UsuarioModule } from './modulos/usuario/usuario.module';
 import { appRoutingModule } from './app.routes';
 import { InicioComponent } from './inicio/inicio.component';
 import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
     BrowserModule,
     appRoutingModule,
     UsuarioModule,
-    EditorFichaModule
+    EditorFichaModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
