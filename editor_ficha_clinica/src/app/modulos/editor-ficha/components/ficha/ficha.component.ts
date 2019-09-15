@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class FichaComponent implements OnInit {
 
   ficha: any;
-  rut = '0';
+  rut = '19.874.598-7';
   constructor(private _fichaService: FichaService) { }
 
   ngOnInit() {

@@ -1,23 +1,26 @@
 <!-- <input type="text" [(ngModel)]="ficha.folio">
 <input type="date" [(ngModel)]="ficha.fecha_ingreso">
 <button (click)="ModificarFicha()">Modificar</button> -->
+
 <div *ngFor="let arquetipos of ficha.arquetipos">
-    <div *ngFor="let arquetipo of arquetipos.arquetipo">
-        <div *ngIf="arquetipo.tipo == 'String'">
-            {{arquetipo.campo | titlecase}}: <input type="text">
+        <div *ngFor="let arquetipo of arquetipos.arquetipo">
+            <div *ngIf="arquetipo.tipo == 'String'" class="col-sm-9">
+                {{arquetipo.campo | titlecase}}: <input type="text" [(ngModel)]="arquetipo.valor">
+            </div>
+            <div *ngIf="arquetipo.tipo == 'Date'" class="col-sm-9">
+                {{arquetipo.campo | titlecase}}: <input type="date"><br>
+            </div>
+            <div *ngIf="arquetipo.tipo == 'Number'" class="col-sm-9">
+                {{arquetipo.campo | titlecase}}: <input type="number"><br>
+            </div>
+            <div *ngIf="arquetipo.tipo == 'Checkbox'" class="col-sm-9">
+                {{arquetipo.campo | titlecase}}:<input type="checkbox" value="alto" placeholder="Alto"><br>
+            </div>
+            <div *ngIf="arquetipo.tipo == 'Radio'" class="col-sm-9">
+                {{arquetipo.campo | titlecase}}: <input type="radio" value="alto">Alto <br>
+            </div>
         </div>
-        <div *ngIf="arquetipo.tipo == Date">
-            <input type="date">
-        </div>
-        <div *ngIf="arquetipo.tipo == Number">
-            <input type="number">
-        </div>
-        <div *ngIf="arquetipo.tipo == Checkbox">
-            <input type="checkbox">
-        </div>
-        <div *ngIf="arquetipo.tipo == Radio">
-            <input type="radio">
-        </div>
-    </div>
-    <button (click)="ModificarFicha()" class="btn btn-primary">Modificar</button>    
+        <div class="col-sm-9" style="text-align: right">
+            <button (click)="ModificarFicha()" class="btn btn-primary" >Modificar</button>
+        </div>   
 </div> 

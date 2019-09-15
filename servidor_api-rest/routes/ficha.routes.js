@@ -4,6 +4,7 @@ let app = express();
 
 let Ficha = require('../models/ficha.model'); //llamado del modelo ficha
 let Paciente = require('../models/paciente.model');//llamado del modelo paciente
+let mdVerificaToken = require('../middlewares/auth');//middleware de autenticacion (seguridad)
 
 
 //Busqueda de los datos del paciente
@@ -66,7 +67,7 @@ app.post('/paciente',(req,res)=>{
     })
 });
 
-app.put('/:id',(req,res)=>{
+app.put('/:id',mdVerificaToken.verificaToken,(req,res)=>{
     let ficha_new = req.body
     Ficha.findOneAndUpdate({_id:req.params.id},
         ficha_new,
@@ -78,7 +79,7 @@ app.put('/:id',(req,res)=>{
 });
 
 //busqueda paciente
-app.get('/paciente/:id',(req,res)=>{
+app.get('/paciente/:id',mdVerificaToken.verificaToken,(req,res)=>{
     Ficha.findOne({'paciente':req.params.id})
     .populate({path:'paciente',model:Paciente})
     .exec((err,ficha)=>{
@@ -87,7 +88,7 @@ app.get('/paciente/:id',(req,res)=>{
     })  
 });
 //busqueda ficha
-app.get('/folio/:folio',(req,res)=>{
+app.get('/folio/:folio',mdVerificaToken.verificaToken,(req,res)=>{
     Ficha.findOne({folio:req.params.folio})
         .populate( {path:'paciente',model:Paciente})
         .exec((err,ficha)=>{
@@ -95,7 +96,7 @@ app.get('/folio/:folio',(req,res)=>{
             res.status(200).json(ficha)
         })
 });
-app.get('/rut/:rut',(req,res)=>{
+app.get('/rut/:rut',mdVerificaToken.verificaToken,(req,res)=>{
     Ficha.find()
         .populate( {path:'paciente',model:Paciente})
         .exec((err,fichas)=>{
