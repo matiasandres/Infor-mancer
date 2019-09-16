@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FichaComponent } from './components/ficha/ficha.component';
 import { FichaService } from './services/ficha.service';
 import { EDITOR_FICHA_ROUTES } from './editor-ficha.routes';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { EditorArquetiposComponent } from './components/editor-arquetipos/editor-arquetipos.component';
 import { DatosPacienteComponent } from './components/datos-paciente/datos-paciente.component';
 import { PestanasArquetipoComponent } from './components/pestanas-arquetipo/pestanas-arquetipo.component';
@@ -18,8 +18,10 @@ import { AgregarPacienteComponent } from './components/agregar-paciente/agregar-
     CommonModule,
     EDITOR_FICHA_ROUTES,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule
   ], 
-  providers: [FichaService]
+  providers: [FichaService,
+  FormBuilder]
 })
 export class EditorFichaModule { }

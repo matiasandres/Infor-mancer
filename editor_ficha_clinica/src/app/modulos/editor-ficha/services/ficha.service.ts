@@ -15,4 +15,7 @@ export class FichaService {
   putModificarFicha(ficha){
     return this.http.put<any>(URL_FICHAS+`/${ficha._id}/${this._usuarioService.getToken()}`,ficha);
   }
+  agregarPaciente(paciente){
+    return this.http.post<any>(URL_FICHAS+`/paciente/${this._usuarioService.getToken()}`,paciente);
+  }
 }

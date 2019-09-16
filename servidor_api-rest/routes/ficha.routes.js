@@ -8,7 +8,7 @@ let mdVerificaToken = require('../middlewares/auth');//middleware de autenticaci
 
 
 //Busqueda de los datos del paciente
-app.get('/',(req,res) => {
+app.get('/',mdVerificaToken.verificaToken,(req,res) => {
     Ficha.find()
         .populate({path:'paciente', model: Paciente})
         .exec((err,fichas)=>{
@@ -18,7 +18,7 @@ app.get('/',(req,res) => {
 });
 
 //Guardado en DB
-app.post('/',(req,res)=>{
+app.post('/',mdVerificaToken.verificaToken,(req,res)=>{
     let body = req.body
     let ficha = new Ficha({
         folio:body.folio,
@@ -40,13 +40,13 @@ app.post('/',(req,res)=>{
     })
 });
 
-app.post('/paciente',(req,res)=>{
+app.post('/paciente',mdVerificaToken.verificaToken,(req,res)=>{
     let body = req.body
     let paciente = new Paciente({
         nombre: body.nombre,
         rut: body.rut,
         fecha_nacimiento: body.fecha_nacimiento,
-        sexo: body.sexo,
+        genero: body.genero,
         direccion: body.direccion,
         prevision: body.prevision,
         grupo_sangre: body.grupo_sangre,
@@ -62,7 +62,7 @@ app.post('/paciente',(req,res)=>{
         }
         return res.status(201).json({
             ok: true,
-            ficha: newPaciente
+            paciente: newPaciente
         })
     })
 });

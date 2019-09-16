@@ -2,42 +2,41 @@
     <div class="card-body">
         <h5 class="card-title">Datos del paciente</h5>
         <div class="card-text">
-            <form action="agregar-paciente.component.ts" (click)="agregarPaciente()">
-
+            <form [formGroup]="pacienteForm" (ngSubmit)="agregarPaciente()" >
                 <table class="table table-borderless table-dark" style="max-width: 50rem">
                         <thead>
                           <tr class="bg-primary">
                             <th scope="col">Nombre</th>
-                            <th scope="col"><input type="text" id="nombre" ></th>
-                            <th scope="row">Sexo</th>
-                            <td colspan="2"><input type="text" id="sexo" ></td>
+                            <th scope="col"><input formControlName="nombre" type="text"></th>
+                            <th scope="row">Género</th>
+                            <td colspan="2"><input formControlName="genero" type="text"></td>
                           </tr>
                         </thead>
                         <tbody>
                           <tr class="bg-primary">
                             <th scope="row">Rut</th>
-                            <td><input type="text" id="rut" ></td>
+                            <td><input formControlName="rut" type="text" ></td>
                             <th scope="row">Direccion</th>
-                            <td colspan="2"><input type="text" id="direccion" ></td>
+                            <td colspan="2"><input formControlName="direccion" type="text"></td>
                           </tr>
                           <tr class="bg-primary">
                             <th scope="row">Fecha de nacimiento</th>
-                            <td><input type="date" id="fecha_nacimiento"></td>
+                            <td><input formControlName="fecha_nacimiento" type="date"></td>
                             <th scope="row">Prevision</th>
-                            <td colspan="2"><input type="text" id="prevision"></td>
+                            <td colspan="2"><input formControlName="prevision" type="text"></td>
                           </tr>
                           <tr class="bg-primary">
                             <th scope="row">Estatura</th>
-                            <td colspan="2"><input type="number" id="estatura_paciente">cm</td>
+                            <td colspan="2"><input formControlName="estatura_paciente" type="number">cm</td>
                             <th scope="row">Grupo sanguineo</th>
-                            <td colspan="2"><input type="text" id="grupo_sangre"></td>
+                            <td colspan="2"><input formControlName="grupo_sangre" type="text" ></td>
                             
                           </tr>
                           <tr class="bg-primary">
                                 <th scope="row">Fono</th>
-                                <td colspan="2"><input type="text" id="fono"></td>
+                                <td colspan="2"><input formControlName="fono" type="text"></td>
                                 <th></th>
-                                <td><button class="btn btn-success" (click)="agregarPaciente()">Agregar paciente</button></td>
+                                <td><button [disabled]="pacienteForm.invalid" class="btn btn-success"type="submit">Agregar paciente</button></td>
                         </tr>
                         </tbody>
                       </table>
