@@ -21,11 +21,12 @@ export class AgregarPacienteComponent implements OnInit {
       rut: ['',Validators.required],
       direccion: [''],
       fecha_nacimiento: [new Date(), Validators.required],
-      prevision: ['', Validators.required],
+      prevision: ['Fonasa', Validators.required],
       estatura_paciente: ['1',Validators.required],
-      grupo_sangre: ['', Validators.required],
+      grupo_sangre: ['A', Validators.required],
+      rh: ['+', Validators.required],
       fono: ['',Validators.required],
-      genero: [''],
+      genero: ['Masculino'],
     });
   }
 
@@ -38,7 +39,8 @@ export class AgregarPacienteComponent implements OnInit {
       fecha_nacimiento:       this.pacienteForm.value.fecha_nacimiento,
       prevision:              this.pacienteForm.value.prevision,
       estatura_paciente:      this.pacienteForm.value.estatura_paciente,
-      grupo_sangre:           this.pacienteForm.value.estatura_paciente,
+      grupo_sangre:           this.pacienteForm.value.grupo_sangre,
+      rh:                     this.pacienteForm.value.rh,
       fono:                   this.pacienteForm.value.fono
     };
     this._fichaService.agregarPaciente(newPaciente).subscribe(res=>{

@@ -5,7 +5,8 @@ export class Paciente {
     genero: string;
     direccion: boolean;
     prevision: boolean;
-    grupo_sangre: string[];
+    grupo_sangre: string;
+    rh: string;
     estatura_paciente: number;
     fono: string;    
     _id?: string;
