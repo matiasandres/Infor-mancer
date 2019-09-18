@@ -8,6 +8,7 @@ import { appRoutingModule } from './app.routes';
 import { InicioComponent } from './inicio/inicio.component';
 import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ArquetipoModule } from './modulos/arquetipo/arquetipo.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     appRoutingModule,
     UsuarioModule,
     EditorFichaModule,
+    ArquetipoModule,
     MatTabsModule
   ],
   providers: [],

@@ -31,7 +31,7 @@ app.post('/',(req,res)=>{
         }
         return res.status(201).json({
             ok: true,
-            ficha: newArquetipo
+            arquetipo: newArquetipo
         })
     })
 })
