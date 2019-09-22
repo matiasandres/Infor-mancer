@@ -6,7 +6,7 @@ import { ARQUETIPO_ROUTES } from './arquetipo.routes';
 import { ArquetipoService } from './services/arquetipo.service';
 import { FormsModule } from '@angular/forms';
 
-
+import {MatTreeModule} from '@angular/material/tree';
 
 @NgModule({
   declarations: [ListaArquetiposComponent
@@ -14,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule, 
     ARQUETIPO_ROUTES,
-    FormsModule
+    FormsModule,
+    MatTreeModule
   ],
   providers:[ArquetipoService]
 })

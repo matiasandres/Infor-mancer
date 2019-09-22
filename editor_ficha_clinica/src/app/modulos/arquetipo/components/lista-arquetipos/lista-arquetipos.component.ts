@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArquetipoService } from '../../services/arquetipo.service';
 
 @Component({
   selector: 'app-lista-arquetipos',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaArquetiposComponent implements OnInit {
 
-  constructor() { }
+  arquetipos = [];
+  constructor(private _arquetipoService: ArquetipoService) { }
 
   ngOnInit() {
+    this._arquetipoService.getArquetipos().subscribe(res=>{
+      console.log(res);
+    });
   }
 
 }

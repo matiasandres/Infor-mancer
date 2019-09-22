@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArquetipoService } from '../../services/arquetipo.service';
 import { Arquetipo } from '../../models/arquetipo.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-importa-arquetipo',
@@ -12,6 +13,7 @@ export class ImportaArquetipoComponent implements OnInit {
   archivo;
   xml;
   arquetipo: Arquetipo = new Arquetipo();  
+  nombre = '';
   
   constructor(private _arquetipoService: ArquetipoService) { }
 
@@ -38,16 +40,38 @@ export class ImportaArquetipoComponent implements OnInit {
                                         valor:  ''
                                     });
         }
-            
       }
-      console.log("LEIDO::::", reader.result);
+      var cortado = reader.result.toString().split('\n');
+      var cort =[];
+      var incluye = false;
+      for(let i in cortado){
+        if(incluye){
+          cort.push(cortado[i]);
+          console.log("TEXTO:::",cortado[i].substring(cortado[i].lastIndexOf('<')+1, cortado[i].lastIndexOf('>')));
+        }
+        if(cortado[i].includes('ontology')){          
+          console.log(cortado[i]);
+          incluye = true;
+        }
+      }
+      console.log(cort);
+      //console.log("CORTADO::::", cortado);
+      //console.log("LEIDO::::", reader.result);
     };
     reader.readAsText(this.archivo);
   }
 
   subir(){
+    if( !this.arquetipo.nombre ||this.arquetipo.nombre.length==0){
+      return Swal.fire('Error','El Arquetipo debe contener un nombre','error');
+    }
     this._arquetipoService.agregarArquetipo(this.arquetipo).subscribe(res=>{
       console.log(res);
+      if(res.ok){
+        this.arquetipo = new Arquetipo();
+        return Swal.fire("Exito", `Arquetipo <b> ${res.arquetipo.nombre}</b> agregado Correctamente`, 'success');
+      }
+      return Swal.fire('Error', res.err,'error');
     })
   }
 

@@ -26,6 +26,7 @@ app.post('/',(req,res)=>{
         if (err){
             return res.status(400).json({
                 ok: false,
+                err: err,
                 msj: 'Error en el arquetipo'
             });
         }
