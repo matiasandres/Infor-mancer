@@ -44,7 +44,7 @@
 </div>
 
 <!-- ============ Modal Privilegios de usuario ======== -->
-<ng-template #content let-modal>
+<ng-template let-c #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Privilegios de Usuario</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -52,11 +52,13 @@
       </button>
     </div>
     <div class="modal-body">
-      <form>
-        
-      </form>
+        <div *ngFor="let p of privilegios_activos">
+            <mat-slide-toggle [(ngModel)]="p.activo">
+                {{p.privilegio}}
+            </mat-slide-toggle>
+        </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cambiar Privilegios</button>
+      <button type="button" class="btn btn-outline-dark" (click)="actualizaPrivilegios(c)">Cambiar Privilegios</button>
     </div>
   </ng-template>

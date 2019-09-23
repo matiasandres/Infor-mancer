@@ -58,7 +58,8 @@ app.put('/', mdVerificaToken.verificaToken, (req, res) => {
         nombre: req.body.nombre,
         token2FA: req.body.token2FA,
         Activo2FA: req.body.Activo2FA,
-        activo: req.body.activo
+        activo: req.body.activo,
+        roles: req.body.roles
     };
     Usuario.findOneAndUpdate({_id: req.body._id},    // busca el usuario por el id recibido de la validacion del token
         newUsuario,         // datos del usuario por actualizar
