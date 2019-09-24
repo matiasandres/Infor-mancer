@@ -18,4 +18,7 @@ export class FichaService {
   agregarPaciente(paciente){
     return this.http.post<any>(URL_FICHAS+`/paciente/${this._usuarioService.getToken()}`,paciente);
   }
+  agregarFicha(ficha){
+    return this.http.post<any>(URL_FICHAS+`/${this._usuarioService.getToken()}`,ficha);
+  }
 }

@@ -4,16 +4,16 @@ const Schema = mongoose.Schema;
 //Datos Fijos 
 
 const arquetipoSchema = new Schema({
-    campo: {type:String},
-    valor: {},
-    tipo: {type:String}
+    nombre: {type:String},
+    valor: {type:String},
+    descripcion: {type:String}
 })
 
 const arquetiposSchema = new Schema({
     usuario:        {type: mongoose.Schema.Types.ObjectId, ref: 'usuario'},
     fecha_atencion: {type:Date},
-    nombre:{type:String},
-    arquetipo:      [arquetipoSchema]
+    nombre:         {type:String},
+    campos:         [arquetipoSchema]
 })
 
 const fichaSchema = new Schema({

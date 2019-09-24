@@ -45,8 +45,14 @@ export class AgregarPacienteComponent implements OnInit {
     };
     this._fichaService.agregarPaciente(newPaciente).subscribe(res=>{
       if(!res.ok) return Swal.fire('Error', res.err.message,'error');
+      let newFicha = {folio: 0, paciente: res.paciente._id, fecha_ingreso: new Date(), arquetipos: []};
+      this._fichaService.agregarFicha(newFicha).subscribe(resp=>{
+          console.log(resp);
+      });
       Swal.fire('Todo Bien', `Paciente <b>${res.paciente.rut}</b> Creado Correctamente`);
     });
   }
+
+  
 }
 

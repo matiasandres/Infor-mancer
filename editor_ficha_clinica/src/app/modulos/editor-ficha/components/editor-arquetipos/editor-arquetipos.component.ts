@@ -22,6 +22,8 @@ export class EditorArquetiposComponent implements OnInit {
     
   }
   ModificarFicha(){
+    console.log(this.ficha);
+    console.log(this.arquetipo);
     this._fichaService.putModificarFicha(this.ficha).subscribe(ficha=>{
       if (ficha) return Swal.fire({
         type:'success',
