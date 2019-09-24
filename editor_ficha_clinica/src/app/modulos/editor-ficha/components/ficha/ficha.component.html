@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-12 col-md-8">
             <input type="text" [(ngModel)]="rut" [required]/>
             <button type="button" class="btn btn-primary" (click)="buscarFicha()" >Obtiene Ficha</button><br><br>
             <div *ngIf="ficha">
@@ -10,19 +10,8 @@
             <div *ngIf="!ficha">
             </div>
         </div>
-        <div class="col-sm-3">
-            modulo de importacion / arquetipos
-            modulo de importacion / app-editor-arquetiposmodulo de importacion / arquetipos
-            modulo de importacion / arquetipos
-            modulo de importacion / arquetipos
-            modulo de importacion / arquetipos
-            modulo de importacion / arquetipos
-            modulo de importacion / arquetipos
-            modulo de importacion / arquetipos  
-            modulo de importacion / arquetipos
-            modulo de importacion / arquetipos
-            modulo de importacion / arquetipos
-            modulo de importacion / arquetipos
+        <div class="col-12 col-md-4">
+                <app-lista-arquetipos></app-lista-arquetipos>
         </div>
     </div>
 </div>

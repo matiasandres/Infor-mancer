@@ -9,6 +9,7 @@ import { DatosPacienteComponent } from './components/datos-paciente/datos-pacien
 import { PestanasArquetipoComponent } from './components/pestanas-arquetipo/pestanas-arquetipo.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AgregarPacienteComponent } from './components/agregar-paciente/agregar-paciente.component';
+import { ArquetipoModule } from '../arquetipo/arquetipo.module';
 
 
 
@@ -19,7 +20,8 @@ import { AgregarPacienteComponent } from './components/agregar-paciente/agregar-
     EDITOR_FICHA_ROUTES,
     FormsModule,
     MatTabsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ArquetipoModule
   ], 
   providers: [FichaService,
   FormBuilder]

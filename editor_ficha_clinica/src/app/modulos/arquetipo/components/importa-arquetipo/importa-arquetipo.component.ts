@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ArquetipoService } from '../../services/arquetipo.service';
 import { Arquetipo } from '../../models/arquetipo.model';
 import Swal from 'sweetalert2';
@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./importa-arquetipo.component.css']
 })
 export class ImportaArquetipoComponent implements OnInit {
+
+  @Output() addArquetipo = new EventEmitter();
 
   archivo;
   xml;
@@ -25,7 +27,7 @@ export class ImportaArquetipoComponent implements OnInit {
     this.arquetipo.campos = [];
     this.archivo = f.target.files[0];
     var reader = new FileReader();
-    console.log("Archivo::", this.archivo);
+    //console.log("Archivo::", this.archivo);
     reader.onloadend = (e)=>{
       var parser = new DOMParser();
       var xmlDoc = parser.parseFromString(reader.result.toString(),"text/xml");
@@ -47,14 +49,14 @@ export class ImportaArquetipoComponent implements OnInit {
       for(let i in cortado){
         if(incluye){
           cort.push(cortado[i]);
-          console.log("TEXTO:::",cortado[i].substring(cortado[i].lastIndexOf('<')+1, cortado[i].lastIndexOf('>')));
+          //console.log("TEXTO:::",cortado[i].substring(cortado[i].lastIndexOf('<')+1, cortado[i].lastIndexOf('>')));
         }
         if(cortado[i].includes('ontology')){          
-          console.log(cortado[i]);
+          //console.log(cortado[i]);
           incluye = true;
         }
       }
-      console.log(cort);
+      //console.log(cort);
       //console.log("CORTADO::::", cortado);
       //console.log("LEIDO::::", reader.result);
     };
@@ -69,6 +71,7 @@ export class ImportaArquetipoComponent implements OnInit {
       console.log(res);
       if(res.ok){
         this.arquetipo = new Arquetipo();
+        this.addArquetipo.emit(res.arquetipo);
         return Swal.fire("Exito", `Arquetipo <b> ${res.arquetipo.nombre}</b> agregado Correctamente`, 'success');
       }
       return Swal.fire('Error', res.err,'error');

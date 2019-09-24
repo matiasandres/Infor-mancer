@@ -7,7 +7,9 @@ import { ArquetipoService } from './services/arquetipo.service';
 import { FormsModule } from '@angular/forms';
 
 import {MatTreeModule} from '@angular/material/tree';
-
+import {MatIconModule} from '@angular/material/icon';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [ListaArquetiposComponent
     , ImportaArquetipoComponent],
@@ -15,8 +17,12 @@ import {MatTreeModule} from '@angular/material/tree';
     CommonModule, 
     ARQUETIPO_ROUTES,
     FormsModule,
-    MatTreeModule
+    MatTreeModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
+  exports:[ListaArquetiposComponent],
   providers:[ArquetipoService]
 })
 export class ArquetipoModule { }
