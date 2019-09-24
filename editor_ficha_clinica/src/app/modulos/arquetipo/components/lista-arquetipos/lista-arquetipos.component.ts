@@ -17,8 +17,7 @@ export class ListaArquetiposComponent implements OnInit {
   dataSource = new MatTreeNestedDataSource<Arquetipo>();
   dataChange: BehaviorSubject<Arquetipo[]> = new BehaviorSubject<Arquetipo[]>([]);
   
-  constructor(private _arquetipoService: ArquetipoService) {
-
+  constructor(private _arquetipoService: ArquetipoService){
     this.treeControl = new NestedTreeControl<Arquetipo>(node => node.campos);
     this.dataChange.subscribe(data=>this.dataSource.data= data);
    }
@@ -26,18 +25,14 @@ export class ListaArquetiposComponent implements OnInit {
   
   ngOnInit() {
     this._arquetipoService.getArquetipos().subscribe(res=>{
-      console.log(res);
       this.arquetipos = res;
-      this.dataChange.next(this.arquetipos);
-      this.dataSource.data = this.arquetipos;
+      this.dataChange.next(this.arquetipos);  // carga la info para la lista de arquetipos
     });
   }
   hasChild = (_: number, node: Arquetipo) => !!node.campos && node.campos.length > 0;
 
   addArquetipo(e){
-    this.arquetipos.push(e);
-    this.dataChange.next(this.arquetipos);
-    console.log("DATA_:::", this.dataSource);
-    console.log("ARQQ::",e);
+    this.arquetipos.push(e);    // agrega al array el nuevo arquetipo cargado desde el form
+    this.dataChange.next(this.arquetipos);  // actualiza la lista de arquetipos
   }
 }

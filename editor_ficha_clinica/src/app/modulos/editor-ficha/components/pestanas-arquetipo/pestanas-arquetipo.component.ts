@@ -13,6 +13,8 @@ export class PestanasArquetipoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    console.log("FICAHA::", this.ficha);
   }
 
 }

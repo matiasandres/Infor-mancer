@@ -35,6 +35,7 @@ export class ImportaArquetipoComponent implements OnInit {
       console.log("ARCHIVO::", this.xmlToJson(xmlDoc)); */
       if(this.archivo.type=='text/xml'){
         this.xml = this.xmlToJson(xmlDoc);
+        console.log(this.xml);
         for(let a of this.xml['archetype']['ontology']['term_definitions'][0].items){
           this.arquetipo.campos.push({ 
                                         nombre:       a.items[0]['#text'],

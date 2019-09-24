@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FichaService } from '../../services/ficha.service';
 import Swal from 'sweetalert2';
+import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
 
 @Component({
   selector: 'app-editor-arquetipos',
@@ -10,10 +11,14 @@ import Swal from 'sweetalert2';
 export class EditorArquetiposComponent implements OnInit {
 
   @Input() ficha:any;
+  @Input() arquetipo:any;
   aRay = [];  
-  constructor(private _fichaService: FichaService) { }
+  usuario;
+  constructor(private _fichaService: FichaService, private _usuarioService: UsuarioService) { }
 
   ngOnInit() {
+    console.log("ARQUE:::", this.arquetipo);
+    this.usuario = this._usuarioService.usuario.email;
     
   }
   ModificarFicha(){
