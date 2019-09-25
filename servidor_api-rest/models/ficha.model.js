@@ -13,7 +13,8 @@ const arquetiposSchema = new Schema({
     usuario:        {type: mongoose.Schema.Types.ObjectId, ref: 'usuario'},
     fecha_atencion: {type:Date},
     nombre:         {type:String},
-    campos:         [arquetipoSchema]
+    campos:         [arquetipoSchema],
+    editable:       {type:Boolean}
 })
 
 const fichaSchema = new Schema({
