@@ -1,6 +1,6 @@
 <div class="contenedor">
     <div class="row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-10">
             <div class="accordion" id="accordionExample">
                 <div class="form-inline">
                     <form>
@@ -43,7 +43,7 @@
             <div *ngIf="!ficha">
             </div>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-2">
             <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
         </div>
     </div>

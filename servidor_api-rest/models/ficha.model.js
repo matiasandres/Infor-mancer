@@ -14,7 +14,7 @@ const arquetiposSchema = new Schema({
     fecha_atencion: {type:Date},
     nombre:         {type:String},
     campos:         [arquetipoSchema],
-    editable:       {type:Boolean}
+    editable:       {type:Boolean, default: true}
 })
 
 const fichaSchema = new Schema({
