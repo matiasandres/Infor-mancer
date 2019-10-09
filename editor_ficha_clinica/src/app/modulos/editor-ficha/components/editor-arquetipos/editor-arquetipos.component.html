@@ -2,12 +2,24 @@
 <input type="date" [(ngModel)]="ficha.fecha_ingreso">
 <button (click)="ModificarFicha()">Modificar</button> -->
 
-<div class="col-sm-9" >
-    <button (click)="ModificarFicha()" class="btn btn-primary" >Actualizar Ficha</button>
-</div> 
-Usuario Ingresa:<input class="form-control" type="text" [(ngModel)]="usuario" disabled>
-<hr>
-<div *ngFor="let a of arquetipo.campos">
-    {{a.nombre | titlecase}}: <input [disabled]="!arquetipo.editable" class="form-control" type="text" [(ngModel)]="a.valor" required>            
-</div>
-
+<mat-tab-group>
+    <div *ngFor="let arquetipo of ficha.arquetipos">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                {{arquetipo.nombre}}&nbsp;
+                <div *ngIf="arquetipo.editable">
+                    <span class="pointer" mat-icon-button (click)="ModificarFicha()"  data-toggle="tooltip" data-placement="button" title="Guardar cambios">
+                        <i class="material-icons md-36">
+                            save
+                        </i>
+                    </span>
+                </div>
+            </ng-template>
+            Usuario Ingresa:<input class="form-control" type="text" [(ngModel)]="usuario" disabled>
+            <hr>
+            <div *ngFor="let a of arquetipo.campos">
+                {{a.nombre | titlecase}}: <input [disabled]="!arquetipo.editable" class="form-control" type="text" [(ngModel)]="a.valor" required>            
+            </div>
+        </mat-tab>
+    </div>
+ </mat-tab-group>

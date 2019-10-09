@@ -40,9 +40,12 @@ export class ListaArquetiposComponent implements OnInit {
     this.arquetipos.push(e);    // agrega al array el nuevo arquetipo cargado desde el form
     this.dataChange.next(this.arquetipos);  // actualiza la lista de arquetipos
   }
-
+  buscar = ""
   filtrar(e){
-    
+    console.log(e);
+    let filtrados = this.arquetipos.filter(x=>x.nombre.toLowerCase().includes(this.buscar.toLowerCase()));
+    this.dataChange.next(filtrados);
+    if(this.buscar.length==0) this.dataChange.next(this.arquetipos)
   }
   enviarArquetipo(a){
     this.enviaArquetipo.emit(a);

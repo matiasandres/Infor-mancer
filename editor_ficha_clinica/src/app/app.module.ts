@@ -7,13 +7,15 @@ import { UsuarioModule } from './modulos/usuario/usuario.module';
 import { appRoutingModule } from './app.routes';
 import { InicioComponent } from './inicio/inicio.component';
 import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
-import { MatTabsModule } from '@angular/material/tabs';
 import { ArquetipoModule } from './modulos/arquetipo/arquetipo.module';
+import  {MatTabsModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { SidevarComponent } from './shared/comnponents/sidevar/sidevar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    SidevarComponent,
     InicioComponent,
   ],
   imports: [
@@ -22,7 +24,10 @@ import { ArquetipoModule } from './modulos/arquetipo/arquetipo.module';
     UsuarioModule,
     EditorFichaModule,
     ArquetipoModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

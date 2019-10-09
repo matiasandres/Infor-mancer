@@ -1,6 +1,6 @@
-<app-importa-arquetipo (addArquetipo)="addArquetipo($event)" ></app-importa-arquetipo>
 <hr>
 <legend>Arquetipos</legend>
+<input type="text" [(ngModel)]="buscar" name="buscar" (keydown)="filtrar($event)">
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node *matTreeNodeDef="let node" >
@@ -14,17 +14,18 @@
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
         <li>
         <div class="mat-tree-node">
-            <button mat-icon-button matTreeNodeToggle
+<!--             <button mat-icon-button matTreeNodeToggle
                     [attr.aria-label]="'toggle ' + node.nombre">
             <mat-icon class="mat-icon-rtl-mirror">
                 {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>            
-            {{node.nombre}}
-            <span *ngIf="agregar_arquetipo" (click)="enviarArquetipo(node)" data-toggle="tooltip" data-placement="top" title="Agregar Arquetipo">
-                    <i class="material-icons"> create_new_folder</i>
+            </mat-icon>      -->       
+            {{node.nombre}}&nbsp;
+            <span *ngIf="agregar_arquetipo" class="pointer" (click)="enviarArquetipo(node)" data-toggle="tooltip" data-placement="button" title="Agregar Arquetipo">
+                    <i class="material-icons md-18"> library_add</i>
             </span>
             <!-- <button class="btn btn-success btn-sm" (click)="enviarArquetipo(node)" *ngIf="agregar_arquetipo">+</button> -->
-            </button>
+<!--             </button> -->
+
         </div>
         <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
             <ng-container matTreeNodeOutlet></ng-container>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
 
 @Component({
@@ -8,11 +8,13 @@ import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service
 })
 export class NavbarComponent implements OnInit {
 
+  @Input() drawer
   constructor(
     public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
+
   }
   
   logout(){

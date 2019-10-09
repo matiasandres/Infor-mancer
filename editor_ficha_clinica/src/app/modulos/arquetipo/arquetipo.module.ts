@@ -22,7 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule,
     MatButtonModule
   ],
-  exports:[ListaArquetiposComponent],
+  exports:[ListaArquetiposComponent,ImportaArquetipoComponent],
   providers:[ArquetipoService]
 })
 export class ArquetipoModule { }

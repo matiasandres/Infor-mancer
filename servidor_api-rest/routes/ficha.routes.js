@@ -7,7 +7,7 @@ let Paciente = require('../models/paciente.model');//llamado del modelo paciente
 let mdVerificaToken = require('../middlewares/auth');//middleware de autenticacion (seguridad)
 
 
-//Busqueda de los datos del fichas
+//Busqueda de los datos de la ficha
 app.get('/',mdVerificaToken.verificaToken,(req,res) => {
     Ficha.find()
         .populate({path:'paciente', model: Paciente})
@@ -51,8 +51,7 @@ app.post('/paciente',mdVerificaToken.verificaToken,(req,res)=>{
         prevision: body.prevision,
         grupo_sangre: body.grupo_sangre,
         estatura_paciente: body.estatura_paciente,
-        fono: body.fono,
-        rh: body.rh
+        fono: body.fono
     })
     paciente.save((err, newPaciente)=>{
         if (err){

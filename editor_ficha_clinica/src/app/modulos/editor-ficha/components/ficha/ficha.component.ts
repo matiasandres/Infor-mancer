@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FichaService } from '../../services/ficha.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-ficha',
@@ -10,7 +11,6 @@ import { Router } from '@angular/router';
 })
 
 export class FichaComponent implements OnInit {
-
   ficha: any;
   rut = '';
   agregar_arquetipo = false;
@@ -21,7 +21,6 @@ export class FichaComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-   
   }   
    
   buscarFicha(){

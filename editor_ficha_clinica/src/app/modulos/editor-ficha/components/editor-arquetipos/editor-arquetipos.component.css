@@ -1,0 +1,10 @@
+.pointer{
+    cursor: pointer;
+}
+
+.material-icons.md-36{
+    position: relative;
+    top: 2px;
+    font-size: 20px; 
+    text-align: left;
+}
