@@ -9,6 +9,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ArquetipoModule } from './modulos/arquetipo/arquetipo.module';
+import { OnlineOfflineService } from './services/online-offline.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ArquetipoModule } from './modulos/arquetipo/arquetipo.module';
     ArquetipoModule,
     MatTabsModule
   ],
-  providers: [],
+  providers: [OnlineOfflineService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
