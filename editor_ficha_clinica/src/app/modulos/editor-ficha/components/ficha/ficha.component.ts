@@ -29,7 +29,7 @@ export class FichaComponent implements OnInit {
   buscarFicha(){
     if(this.rut.length==0) return Swal.fire("Error", "Ingrese Rut a buscar","error");
      this._fichaService.getFichaRut(this.rut).subscribe(f=>{
-       if (!f) (async () => {
+       if (!f) (async () => {   // si la ficha no esta creada
         const { value: confirm} = await Swal.fire({
           title: 'Paciente no encontrado',
             type: 'warning',
@@ -47,9 +47,6 @@ export class FichaComponent implements OnInit {
         }
       })()
       this.ficha = f;
-      this._localdbService.addFicha(f).then(res=>{ 
-        console.log("INGRESA_FICHA::::", res);
-      });
       this.agregar_arquetipo=true;
     });
   }

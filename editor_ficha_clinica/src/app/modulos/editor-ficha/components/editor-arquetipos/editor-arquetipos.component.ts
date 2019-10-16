@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FichaService } from '../../services/ficha.service';
 import Swal from 'sweetalert2';
 import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
+import { LocalDBService } from 'src/app/services/local-db.service';
 
 @Component({
   selector: 'app-editor-arquetipos',
@@ -14,7 +15,9 @@ export class EditorArquetiposComponent implements OnInit {
   @Input() arquetipo:any;
   aRay = [];  
   usuario;
-  constructor(private _fichaService: FichaService, private _usuarioService: UsuarioService) { }
+  constructor(private _fichaService: FichaService
+    , private _usuarioService: UsuarioService
+    , private _localDBService: LocalDBService) { }
 
   ngOnInit() {
     console.log("ARQUE:::", this.arquetipo);
@@ -22,8 +25,8 @@ export class EditorArquetiposComponent implements OnInit {
     
   }
   ModificarFicha(){
-    console.log(this.ficha);
-    console.log(this.arquetipo);
+    this._localDBService.updateFicha(this.ficha);   // actualiza Ficha en base de datos local
+
     this._fichaService.putModificarFicha(this.ficha).subscribe(ficha=>{
       if (ficha) return Swal.fire({
         type:'success',

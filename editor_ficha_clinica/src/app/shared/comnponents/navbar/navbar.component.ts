@@ -13,12 +13,19 @@ export class NavbarComponent implements OnInit {
   constructor(
     public _usuarioService: UsuarioService,
     private online: OnlineOfflineService
-  ) { }
+  ) {
+   }
 
   conectado: boolean;
+  ping=0;   // ping al servidor de la api
   ngOnInit() {
     this.online.conexion().subscribe(value => {   // checkea si existe o no conexion a internet
       this.conectado = value;
+    });
+
+    this.online.pingStream.subscribe(res=>{ // verifica que el servidor de la api no este caido
+      this.ping = res;    
+      //console.log("Ping Server:", res);
     });
   }
   logout(){

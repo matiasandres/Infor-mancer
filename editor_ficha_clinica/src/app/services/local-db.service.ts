@@ -22,23 +22,33 @@ export class LocalDBService {
     this.db = await openDB<any>(this.dbName, this.dbVersion, {
       upgrade(db) {
         db.createObjectStore('ficha', {
-          keyPath: '_id',
+          keyPath: '_id'
         });        
       },
     });
   }
-  async addFicha(ficha){
+  async addFichas(fichas){
+    let trans = this.db.transaction(['ficha'],'readwrite');
+    // Crea una almacén de objetos en la transacción
+      var objectStore = trans.objectStore("ficha");
+      objectStore.clear();
+      for(let f of fichas){
+        // Agrega nuestro objeto newItem al almacén de objetos
+        var objectStoreRequest = objectStore.add(f);
+        objectStoreRequest.onsuccess = function(event) {
+        };
+      }
+  }
+  async updateFicha(ficha){
     let trans = this.db.transaction(['ficha'],'readwrite');
     // Crea una almacén de objetos en la transacción
       var objectStore = trans.objectStore("ficha");
 
-      // Agrega nuestro objeto newItem al almacén de objetos
-      var objectStoreRequest = objectStore.add(ficha);
-      objectStoreRequest.onsuccess = function(event) {
-        //Informa sobre el éxito de nuestro nuevo elemento en la base de datos
-        console.log("AGREGADOOOOO:::::");
+      var actualiza = objectStore.put(ficha);
+
+      actualiza.onsuccess = function(res){
+        console.log("Actualizado", res);
       };
   }
-  
  
 }
