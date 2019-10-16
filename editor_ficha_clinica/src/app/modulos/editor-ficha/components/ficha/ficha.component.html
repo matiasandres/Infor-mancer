@@ -1,4 +1,5 @@
 <div class="contenedor">
+        <div *ngIf="!conectado" class="alert alert-danger" role="alert">Sin Conexión al servidor. Datos seran guardados localmente</div>
     <div class="row">
         <div class="col-12 col-md-10">
             <div class="accordion" id="accordionExample">

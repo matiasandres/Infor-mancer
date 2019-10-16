@@ -3,6 +3,7 @@ import { FichaService } from '../../services/ficha.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { LocalDBService } from 'src/app/services/local-db.service';
+import { OnlineOfflineService } from 'src/app/services/online-offline.service';
 
 @Component({
   selector: 'app-ficha',
@@ -15,12 +16,15 @@ export class FichaComponent implements OnInit {
   ficha: any;
   rut = '';
   agregar_arquetipo = false;
-  
+  conectado = true;    // para checkear la conexion a internet
   constructor(
     private _fichaService: FichaService,
     private router: Router,
-    private _localdbService: LocalDBService
-    ) { }
+    private _localdbService: LocalDBService,
+    private _conexionService: OnlineOfflineService
+    ) { 
+      _conexionService.conectado.subscribe(res=>{this.conectado=res});
+    }
 
   ngOnInit() {
   
@@ -28,27 +32,37 @@ export class FichaComponent implements OnInit {
    
   buscarFicha(){
     if(this.rut.length==0) return Swal.fire("Error", "Ingrese Rut a buscar","error");
-     this._fichaService.getFichaRut(this.rut).subscribe(f=>{
-       if (!f) (async () => {   // si la ficha no esta creada
-        const { value: confirm} = await Swal.fire({
-          title: 'Paciente no encontrado',
-            type: 'warning',
-            text: '¿desea crear paciente?',
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonText:'<i class="fa fa-thumbs-up"></i> SI',
-            confirmButtonAriaLabel: 'si',
-            cancelButtonText: '<i class="fa fa-thumbs-down"></i> NO',
-            cancelButtonAriaLabel: 'no'
-        })
-        if (confirm) {
-          this.router.navigateByUrl('/paciente');
+    if(this.conectado){
+       this._fichaService.getFichaRut(this.rut).subscribe(f=>{
+         if (!f) (async () => {   // si la ficha no esta creada
+          const { value: confirm} = await Swal.fire({
+            title: 'Paciente no encontrado',
+              type: 'warning',
+              text: '¿desea crear paciente?',
+              showCloseButton: true,
+              showCancelButton: true,
+              focusConfirm: false,
+              confirmButtonText:'<i class="fa fa-thumbs-up"></i> SI',
+              confirmButtonAriaLabel: 'si',
+              cancelButtonText: '<i class="fa fa-thumbs-down"></i> NO',
+              cancelButtonAriaLabel: 'no'
+          })
+          if (confirm) {
+            this.router.navigateByUrl('/paciente');
+          }
+        })()
+        this.ficha = f;
+        this.agregar_arquetipo=true;
+      });
+    }
+    else{
+      this._localdbService.getFicha(this.rut).then(res=>{
+        if(res){
+          return this.ficha= res;
         }
-      })()
-      this.ficha = f;
-      this.agregar_arquetipo=true;
-    });
+        Swal.fire("Error","Ficha NO encontrada!!", "error");
+      });
+    }
   }
 
   formatea(e){

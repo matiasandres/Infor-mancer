@@ -50,5 +50,24 @@ export class LocalDBService {
         console.log("Actualizado", res);
       };
   }
+  async getFicha(rut){
+    let trans = this.db.transaction(['ficha'],'readwrite');
+    // Crea una almacén de objetos en la transacción
+      var objectStore = trans.objectStore("ficha");
+      let ficha;
+      var objectStoreRequest = objectStore.getAll();
+      await objectStoreRequest.then(res=>{
+        ficha = res.filter(x=>x.paciente.rut==rut)[0];        
+      })
+      return ficha;
+      
+
+     /* objectStoreRequest.onsuccess = function(event) {        
+        var myRecord = objectStoreRequest.result;
+        console.log("BUSQUEDAAA",myRecord);
+      }; */
+  }
+
+
  
 }
