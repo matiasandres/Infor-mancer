@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FichaService } from '../../services/ficha.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { LocalDBService } from 'src/app/services/local-db.service';
 
 @Component({
   selector: 'app-ficha',
@@ -17,11 +18,12 @@ export class FichaComponent implements OnInit {
   
   constructor(
     private _fichaService: FichaService,
-    private router: Router
+    private router: Router,
+    private _localdbService: LocalDBService
     ) { }
 
   ngOnInit() {
-   
+  
   }   
    
   buscarFicha(){
@@ -45,6 +47,9 @@ export class FichaComponent implements OnInit {
         }
       })()
       this.ficha = f;
+      this._localdbService.addFicha(f).then(res=>{ 
+        console.log("INGRESA_FICHA::::", res);
+      });
       this.agregar_arquetipo=true;
     });
   }

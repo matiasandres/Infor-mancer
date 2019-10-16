@@ -23,7 +23,6 @@
             <span *ngIf="agregar_arquetipo" (click)="enviarArquetipo(node)" data-toggle="tooltip" data-placement="top" title="Agregar Arquetipo">
                     <i class="material-icons"> create_new_folder</i>
             </span>
-            <!-- <button class="btn btn-success btn-sm" (click)="enviarArquetipo(node)" *ngIf="agregar_arquetipo">+</button> -->
             </button>
         </div>
         <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">

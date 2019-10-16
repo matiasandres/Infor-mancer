@@ -10,6 +10,7 @@ import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ArquetipoModule } from './modulos/arquetipo/arquetipo.module';
 import { OnlineOfflineService } from './services/online-offline.service';
+import { LocalDBService } from './services/local-db.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { OnlineOfflineService } from './services/online-offline.service';
     ArquetipoModule,
     MatTabsModule
   ],
-  providers: [OnlineOfflineService],
+  providers: [OnlineOfflineService, LocalDBService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
