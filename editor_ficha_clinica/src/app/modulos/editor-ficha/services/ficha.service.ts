@@ -27,15 +27,11 @@ export class FichaService {
     let fichas;
     await this._localDBService.getFichas().then(res=>{      
       fichas = {fichas:res};
-      console.log(fichas);
-      
       this.http.post<any>(URL_FICHAS+`/fichas/${this._usuarioService.getToken()}`,fichas).subscribe(res=>{
         if(res.ok){
           Swal.fire("Sincronizar",'Datos Locales Sincronizados Correctamente', 'success');
         }
       });
-        
-      
     })
   }
   agregarPaciente(paciente){
