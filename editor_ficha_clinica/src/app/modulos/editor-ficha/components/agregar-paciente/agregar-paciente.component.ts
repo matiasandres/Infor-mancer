@@ -3,6 +3,7 @@ import { FichaService } from '../../services/ficha.service';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Paciente } from '../../models/paciente.model';
+import { Ficha } from '../../models/ficha.model';
 
 @Component({
   selector: 'app-agregar-paciente',
@@ -45,7 +46,13 @@ export class AgregarPacienteComponent implements OnInit {
     };
     this._fichaService.agregarPaciente(newPaciente).subscribe(res=>{
       if(!res.ok) return Swal.fire('Error', res.err.message,'error');
-      let newFicha = {folio: 0, paciente: res.paciente._id, fecha_ingreso: new Date(), arquetipos: []};
+      let newFicha: Ficha = {
+                            folio: 0, 
+                            paciente: res.paciente._id, 
+                            fecha_ingreso: new Date(), 
+                            arquetipos: [], 
+                            last_update: new Date()
+                          };
       this._fichaService.agregarFicha(newFicha).subscribe(resp=>{
           console.log(resp);
       });

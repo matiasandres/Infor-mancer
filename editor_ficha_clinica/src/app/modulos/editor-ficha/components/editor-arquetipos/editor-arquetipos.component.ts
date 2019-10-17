@@ -3,6 +3,7 @@ import { FichaService } from '../../services/ficha.service';
 import Swal from 'sweetalert2';
 import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
 import { LocalDBService } from 'src/app/services/local-db.service';
+import { OnlineOfflineService } from 'src/app/services/online-offline.service';
 
 @Component({
   selector: 'app-editor-arquetipos',
@@ -15,29 +16,37 @@ export class EditorArquetiposComponent implements OnInit {
   @Input() arquetipo:any;
   aRay = [];  
   usuario;
+  conectado = true;
   constructor(private _fichaService: FichaService
     , private _usuarioService: UsuarioService
-    , private _localDBService: LocalDBService) { }
+    , private _conectadoService: OnlineOfflineService
+    , private _localDBService: LocalDBService) {
+      this._conectadoService.conectado.subscribe(res=>{this.conectado=res})
+     }
 
   ngOnInit() {
-    console.log("ARQUE:::", this.arquetipo);
-    this.usuario = this._usuarioService.usuario.email;
-    
+    this.usuario = this._usuarioService.usuario.email;    
   }
-  ModificarFicha(){
-    this._localDBService.updateFicha(this.ficha);   // actualiza Ficha en base de datos local
-
-    this._fichaService.putModificarFicha(this.ficha).subscribe(ficha=>{
-      if (ficha) return Swal.fire({
-        type:'success',
-        title:'Datos modificados',
-        text:'Exito al modificar'
+  ModificarFicha(){    
+    if(this.conectado){
+      this._fichaService.putModificarFicha(this.ficha).subscribe(ficha=>{
+        if (ficha) return Swal.fire({
+          type:'success',
+          title:'Datos modificados',
+          text:'Exito al modificar'
+        })
+        if (!ficha) return Swal.fire({
+          type:'error',
+          title:'error al modificar los datos',
+          text:'no se puede modificar la ficha'
+        })
+        this.ficha = ficha;
       })
-      if (!ficha) return Swal.fire({
-        type:'error',
-        title:'error al modificar los datos',
-        text:'no se puede modificar la ficha'
-      })
-      this.ficha = ficha;
-  })}
+    }    
+    else{
+      this.ficha.last_update = new Date();
+      this._localDBService.updateFicha(this.ficha);   // actualiza Ficha en base de datos local
+      Swal.fire('Datos modificados', 'Exito al modificar', 'success');
+    }
+  }
 }

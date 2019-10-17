@@ -23,11 +23,16 @@ export class FichaComponent implements OnInit {
     private _localdbService: LocalDBService,
     private _conexionService: OnlineOfflineService
     ) { 
-      _conexionService.conectado.subscribe(res=>{this.conectado=res});
+      this._conexionService.conectado.subscribe(res=>{
+        if(res && !this.conectado){
+          console.log("Actualiza DB");
+          this._fichaService.syncFichas();
+        }
+        this.conectado=res;
+      });
     }
 
-  ngOnInit() {
-  
+  ngOnInit() {  
   }   
    
   buscarFicha(){
@@ -58,6 +63,7 @@ export class FichaComponent implements OnInit {
     else{
       this._localdbService.getFicha(this.rut).then(res=>{
         if(res){
+          this.agregar_arquetipo=true;
           return this.ficha= res;
         }
         Swal.fire("Error","Ficha NO encontrada!!", "error");

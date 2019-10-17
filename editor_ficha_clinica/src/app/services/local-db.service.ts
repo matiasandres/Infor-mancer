@@ -7,13 +7,11 @@ import {openDB} from 'idb';
 export class LocalDBService {
 
   dbName = 'fichas';
-  dbTableName = 'ficha';
   dbVersion = 1;
-
-  db;
+  db;   // base de datos
   constructor() { 
    this.inicia().then(res=>{
-     console.log("dsadasd", this.db);
+     console.log("Inicia DB", this.db);
    });
   }
   
@@ -21,7 +19,10 @@ export class LocalDBService {
   async inicia(){
     this.db = await openDB<any>(this.dbName, this.dbVersion, {
       upgrade(db) {
-        db.createObjectStore('ficha', {
+        db.createObjectStore('ficha', {   // crea tabla ficha
+          keyPath: '_id'
+        });        
+        db.createObjectStore('arquetipos', {  // crea tabla de arquetipos
           keyPath: '_id'
         });        
       },
@@ -39,13 +40,23 @@ export class LocalDBService {
         };
       }
   }
+  async addArquetipos(arquetipos){
+    let trans = this.db.transaction(['arquetipos'],'readwrite');
+    // Crea una almacén de objetos en la transacción
+      var objectStore = trans.objectStore("arquetipos");
+      objectStore.clear();
+      for(let a of arquetipos){
+        // Agrega nuestro objeto newItem al almacén de objetos
+        var objectStoreRequest = objectStore.add(a);
+        objectStoreRequest.onsuccess = function(event) {
+        };
+      }
+  }
   async updateFicha(ficha){
     let trans = this.db.transaction(['ficha'],'readwrite');
     // Crea una almacén de objetos en la transacción
       var objectStore = trans.objectStore("ficha");
-
       var actualiza = objectStore.put(ficha);
-
       actualiza.onsuccess = function(res){
         console.log("Actualizado", res);
       };
@@ -60,12 +71,28 @@ export class LocalDBService {
         ficha = res.filter(x=>x.paciente.rut==rut)[0];        
       })
       return ficha;
-      
-
-     /* objectStoreRequest.onsuccess = function(event) {        
-        var myRecord = objectStoreRequest.result;
-        console.log("BUSQUEDAAA",myRecord);
-      }; */
+  }
+  async getFichas(){
+    let trans = this.db.transaction(['ficha'],'readwrite');
+    // Crea una almacén de objetos en la transacción
+      var objectStore = trans.objectStore("ficha");
+      let fichas;
+      var objectStoreRequest = objectStore.getAll();
+      await objectStoreRequest.then(res=>{
+        fichas = res;      
+      })
+      return fichas;
+  }
+  async getArquetipos(){
+    let trans = this.db.transaction(['arquetipos'],'readwrite');
+    // Crea una almacén de objetos en la transacción
+      var objectStore = trans.objectStore("arquetipos");
+      let arquetipos;
+      var objectStoreRequest = objectStore.getAll();
+      await objectStoreRequest.then(res=>{
+        arquetipos = res;      
+      })
+      return arquetipos;
   }
 
 

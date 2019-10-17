@@ -8,11 +8,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class OnlineOfflineService {
 
-  pingStream: Subject<number> = new Subject<number>();
-  ping: number = 0;
-  url: string = URL_SERVER;
+  private pingStream: Subject<number> = new Subject<number>();
+  private ping: number = 0;
+  private url: string = URL_SERVER;
   conectado: Subject<boolean> = new Subject<boolean>();
-  nointernet = false;
+  private nointernet = false;
   constructor(private _http: HttpClient) { 
     interval(3000)      // checkea la conexion cada 3 segundos
       .subscribe((data) => {
@@ -35,14 +35,11 @@ export class OnlineOfflineService {
           this.nointernet=res;
         })
   }
-  conexion(){
+  private conexion(){
     return merge(
       of(navigator.onLine),
       fromEvent(window, 'online').pipe(mapTo(true)),
       fromEvent(window, 'offline').pipe(mapTo(false))
     )
-  }
-  checkStatus(){
-
   }
 }
