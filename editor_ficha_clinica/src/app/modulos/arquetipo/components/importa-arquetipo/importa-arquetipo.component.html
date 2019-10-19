@@ -4,17 +4,17 @@
     <button class="btn btn-primary" (click)="subir()">Subir Arquetipo</button>
 </div> -->
 
-<div class="input-group">
+<div class="input-group" > 
   
-  <div class="custom-file">
+  <div class="custom-file"*ngIf=" _usuarioService.isParamedioco()">
     <input type="file" class="custom-file-input" id="inputGroupFile01" accept=".xml,.adl,.json"
     aria-describedby="inputGroupFileAddon01" (change)="sube($event)" >
-    <label *ngIf="!archivo" class="custom-file-label" for="inputGroupFile01">Seleccionar Archivo ...</label>
+    <label *ngIf="!archivo" class="custom-file-label" for="inputGroupFile01" >Seleccionar Archivo ...</label>
     <label *ngIf="archivo" class="custom-file-label" for="inputGroupFile01">{{archivo.name}} </label>
   </div>
 </div>
 <br>
-<div class="row">
+<div class="row"  *ngIf=" _usuarioService.isParamedioco()">
   <div class="col-10">
     <input type="text" class="form-control" [(ngModel)]="arquetipo.nombre" name="nombre" placeholder="Nombre de Arquetipo" required>
   </div>

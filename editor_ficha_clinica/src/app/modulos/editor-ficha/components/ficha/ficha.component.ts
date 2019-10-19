@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { LocalDBService } from 'src/app/services/local-db.service';
 import { OnlineOfflineService } from 'src/app/services/online-offline.service';
+import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
 
 @Component({
   selector: 'app-ficha',
@@ -18,6 +19,7 @@ export class FichaComponent implements OnInit {
   agregar_arquetipo = false;
   conectado = true;    // para checkear la conexion a internet
   constructor(
+    public _usuarioService:UsuarioService,
     private _fichaService: FichaService,
     private router: Router,
     private _localdbService: LocalDBService,
@@ -47,7 +49,7 @@ export class FichaComponent implements OnInit {
               showCloseButton: true,
               showCancelButton: true,
               focusConfirm: false,
-              confirmButtonText:'<i class="fa fa-thumbs-up"></i> SI',
+              confirmButtonText:'<i class="fa fa-thumbs-up" > SI</i>',
               confirmButtonAriaLabel: 'si',
               cancelButtonText: '<i class="fa fa-thumbs-down"></i> NO',
               cancelButtonAriaLabel: 'no'

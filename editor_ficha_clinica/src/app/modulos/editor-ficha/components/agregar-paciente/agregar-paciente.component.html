@@ -1,4 +1,4 @@
-<div class="card mb-3" style="max-width: 80rem;">
+<div class="card mb-3" style="max-width: 80rem;" *ngIf="ficha && _usuarioService.isParamedico()">
   <h5 class="card-header">Datos del Paciente</h5>
     <div class="card-body">
             <form [formGroup]="pacienteForm" (ngSubmit)="agregarPaciente()" >

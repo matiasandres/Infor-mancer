@@ -119,4 +119,14 @@ export class UsuarioService {
   isAdmin(){
     return this.usuario.roles.includes('ADMIN');
   }
+  isMedico(){
+    return this.usuario.roles.includes('MEDICO');
+  }
+  isSecretaria(){
+    return this.usuario.roles.includes('SECRETARIA');
+  }
+  isParamedico(){
+    return this.usuario.roles.includes('PARAMEDICO');
+  }
+  
 }
