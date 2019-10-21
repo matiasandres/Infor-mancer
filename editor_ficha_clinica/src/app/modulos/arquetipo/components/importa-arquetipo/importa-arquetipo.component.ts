@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ArquetipoService } from '../../services/arquetipo.service';
 import { Arquetipo } from '../../models/arquetipo.model';
 import Swal from 'sweetalert2';
+import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
 
 @Component({
   selector: 'app-importa-arquetipo',
@@ -17,7 +18,7 @@ export class ImportaArquetipoComponent implements OnInit {
   arquetipo: Arquetipo = new Arquetipo();  
   nombre = '';
   
-  constructor(private _arquetipoService: ArquetipoService) { }
+  constructor(private _arquetipoService: ArquetipoService, public _usuarioService: UsuarioService) { }
 
   ngOnInit() {
   }

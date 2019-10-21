@@ -6,6 +6,7 @@ import { Arquetipo } from '../../models/arquetipo.model';
 import { BehaviorSubject } from 'rxjs';
 import { OnlineOfflineService } from 'src/app/services/online-offline.service';
 import { LocalDBService } from 'src/app/services/local-db.service';
+import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
 
 @Component({
   selector: 'app-lista-arquetipos',
@@ -25,7 +26,8 @@ export class ListaArquetiposComponent implements OnInit {
   contectado = true;  
   constructor(private _arquetipoService: ArquetipoService,
             private _conectado: OnlineOfflineService,
-            private _localDBService: LocalDBService
+            private _localDBService: LocalDBService,
+            public _usuarioService: UsuarioService
             ){
               this._conectado.conectado.subscribe(res=>{
                 if(res != this.contectado){

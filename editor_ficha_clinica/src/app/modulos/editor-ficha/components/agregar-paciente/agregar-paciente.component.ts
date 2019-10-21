@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Paciente } from '../../models/paciente.model';
 import { Ficha } from '../../models/ficha.model';
+import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
 
 @Component({
   selector: 'app-agregar-paciente',
@@ -12,9 +13,10 @@ import { Ficha } from '../../models/ficha.model';
 })
 export class AgregarPacienteComponent implements OnInit {
   pacienteForm: FormGroup;
-
+  ficha;
   constructor(private _fichaService: FichaService,
-    private formBuilder: FormBuilder,) { }
+    public _usuarioService: UsuarioService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.pacienteForm = this.formBuilder.group({
