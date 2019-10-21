@@ -6,7 +6,7 @@
 
             </ng-template>
             <div *ngIf="arquetipo.editable">
-                <span class="pointer" mat-icon-button (click)="ModificarFicha()"  data-toggle="tooltip" data-placement="button" title="Guardar cambios">
+                <span class="pointer" mat-icon-button (click)="ModificarFicha()"  data-toggle="tooltip" data-placement="button" title="Guardar cambios" *ngIf=" _usuarioService.isParamedico()">
                     <i class="material-icons md-36">
                         save
                     </i>
