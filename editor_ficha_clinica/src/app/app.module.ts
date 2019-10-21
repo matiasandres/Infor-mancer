@@ -10,7 +10,6 @@ import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
 import { ArquetipoModule } from './modulos/arquetipo/arquetipo.module';
 import  {MatTabsModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { SidevarComponent } from './shared/comnponents/sidevar/sidevar.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +26,7 @@ import { SidevarComponent } from './shared/comnponents/sidevar/sidevar.component
     MatTabsModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
