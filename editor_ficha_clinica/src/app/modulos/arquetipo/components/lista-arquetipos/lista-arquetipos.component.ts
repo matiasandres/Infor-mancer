@@ -53,12 +53,14 @@ export class ListaArquetiposComponent implements OnInit {
         return this.dataChange.next(this.arquetipos);  // carga la info para la lista de arquetipos
       });
     }
-    this._localDBService.getArquetipos().then(res =>{
-      console.log("ARQS_LOCAL", res);
-      this.arquetipos = res;
-      this.arquetipos_all = res;
-      this.dataChange.next(this.arquetipos);  // carga la info para la lista de arquetipos
-    })
+    else{
+      this._localDBService.getArquetipos().then(res =>{
+        console.log("ARQS_LOCAL", res);
+        this.arquetipos = res;
+        this.arquetipos_all = res;
+        this.dataChange.next(this.arquetipos);  // carga la info para la lista de arquetipos
+      })
+    }
     
   }
   hasChild = (_: number, node: Arquetipo) => !!node.campos && node.campos.length > 0;

@@ -22,6 +22,8 @@ export class EditorArquetiposComponent implements OnInit {
     , private _conectadoService: OnlineOfflineService
     , private _localDBService: LocalDBService) {
       this._conectadoService.conectado.subscribe(res=>{this.conectado=res})
+
+      console.log("FICHHASHAS___", this.ficha);
      }
 
   ngOnInit() {

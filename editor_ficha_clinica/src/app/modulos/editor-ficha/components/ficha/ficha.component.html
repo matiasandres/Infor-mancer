@@ -15,16 +15,13 @@
     </div>
 </div>
 
-<mat-drawer-container class="css-container" hasBackdrop="false">
-    <div class="css-drawer">
-    <mat-drawer #drawer mode="side">
-        <div appSimpleBar class="drawer">
+<mat-sidenav-container class="css-container" hasBackdrop="false">
+    <mat-sidenav #drawer mode="side">
             <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
-        </div>
-     </mat-drawer>
-    </div>
         
-    <mat-drawer-content>
+     </mat-sidenav>
+        
+    <mat-sidenav-content>
        
         <div class="contenedor">
         <div *ngIf="!conectado" class="alert alert-danger" role="alert">Sin Conexión al servidor. Datos seran guardados localmente</div>
@@ -71,7 +68,7 @@
 
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="card-body">
+                            <div class="card-body" *ngIf="ficha">
                                 <app-editor-arquetipos [ficha]="ficha"></app-editor-arquetipos >
                             </div>
                             </div>
@@ -89,6 +86,6 @@
             </div>
         </div>
         
-    </mat-drawer-content>
-</mat-drawer-container>    
+    </mat-sidenav-content>
+</mat-sidenav-container>    
 
