@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef,OnDestroy } from '@angular/core';
 import { UsuarioService } from './modulos/usuario/services/usuario.service';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ export class AppComponent {
   title = 'ficha-clinica';
 
   constructor(public _usuarioService: UsuarioService){
-
+  
   }
+
 }

@@ -1,3 +1,14 @@
 .contenedor{
     margin-right: 10%;
 }
+.pointer{
+    cursor: pointer;
+}
+
+.material-icons.md-36 {
+    position: relative;
+    top: 10px;
+    font-size: 30px; 
+    text-align: end;
+    
+}

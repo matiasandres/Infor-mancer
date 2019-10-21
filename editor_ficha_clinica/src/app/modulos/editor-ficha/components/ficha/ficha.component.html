@@ -1,52 +1,66 @@
-<div class="contenedor">
+<mat-drawer-container class="example-container" hasBackdrop="false">
+    <mat-drawer #drawer mode="side">
+         <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
+     </mat-drawer>
+        
+    <mat-drawer-content>
+        <div class="contenedor">
         <div *ngIf="!conectado" class="alert alert-danger" role="alert">Sin Conexión al servidor. Datos seran guardados localmente</div>
-    <div class="row">
-        <div class="col-12 col-md-10">
-            <div class="accordion" id="accordionExample">
-                <div class="form-inline">
-                    <form>
-                        <input type="text" (keyup)="formatea($event)" class="form-control mx-sm-3 mb-2" [(ngModel)]="rut" name="rut" placeholder="12.345.678-9" required/>
-                        <button type="submit" class="btn btn-primary mb-2" (click)="buscarFicha()" >Buscar Ficha</button><br><br>
-                    </form>
-                </div>
+            <div class="row">
+                <div class="col-12 col-md-12">                      
+                    <div class="accordion" id="accordionExample">
+                        <div class="form-inline">
+                            <form>                        
+                                <input type="text" (keyup)="formatea($event)" class="form-control mx-sm-3 mb-2" [(ngModel)]="rut" name="rut" placeholder="12.345.678-9" required/>
+                                <button type="submit" class="btn btn-primary mb-2" (click)="buscarFicha()"  >Buscar Ficha</button>
+                            </form>
+                        </div>
                 <div class="card" *ngIf="ficha && (_usuarioService.isMedico() || _usuarioService.isParamedico() || _usuarioService.isSecretaria())">
-                    <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Datos del Paciente
-                        </button>
-                    </h5>
+                            <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Datos del Paciente
+                                </button>
+                            </h5>
+                            </div>
+                        
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            
+                                <app-datos-paciente [ficha]="ficha"></app-datos-paciente>
+                            
+                            </div>
+                        </div>
+                            <div class="card-header css" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" (click)="drawer.toggle()" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Arquetipos
+                                </button>
+                                <span class="pointer" mat-icon-button (click)="drawer.toggle()" data-toggle="tooltip" data-placement="button" title="Mostrar/Ocultar lista arquetipos">
+                                    <i class="material-icons md-36">
+                                        list
+                                    </i>
+                                </span>
+                            </h5>
+
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <app-editor-arquetipos [ficha]="ficha"></app-editor-arquetipos >
+                            </div>
+                            </div>
+                        </div>
                     </div>
-                
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample" >
-                    
-                        <app-datos-paciente [ficha]="ficha"></app-datos-paciente>
-                    
+                    <div *ngIf="ficha">
                     </div>
-                </div>
                 <div class="card" *ngIf="ficha && (ficha.arquetipos.length >0 && _usuarioService.isAdmin() || _usuarioService.isParamedico()) ">
-                    <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Arquetipos
-                        </button>
-                    </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <app-pestanas-arquetipo [ficha]="ficha"></app-pestanas-arquetipo>
-                    </div>
+                    <div *ngIf="!ficha">
                     </div>
                 </div>
-            </div>
-            <div *ngIf="ficha">
-            </div>
-            <div *ngIf="!ficha">
+<!--                 <div class="col-12 col-md-2">
+                    <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
+                </div> -->
             </div>
         </div>
-        <div class="col-12 col-md-2">
-            <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
-        </div>
-    </div>
-</div>
+    </mat-drawer-content>
+</mat-drawer-container>    
 

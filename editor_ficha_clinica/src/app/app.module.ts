@@ -7,8 +7,9 @@ import { UsuarioModule } from './modulos/usuario/usuario.module';
 import { appRoutingModule } from './app.routes';
 import { InicioComponent } from './inicio/inicio.component';
 import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
-import { MatTabsModule } from '@angular/material/tabs';
 import { ArquetipoModule } from './modulos/arquetipo/arquetipo.module';
+import  {MatTabsModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { SidevarComponent } from './shared/comnponents/sidevar/sidevar.component';
 import { OnlineOfflineService } from './services/online-offline.service';
 import { LocalDBService } from './services/local-db.service';
 
@@ -16,6 +17,7 @@ import { LocalDBService } from './services/local-db.service';
   declarations: [
     AppComponent,
     NavbarComponent,
+    SidevarComponent,
     InicioComponent,
   ],
   imports: [
@@ -24,7 +26,10 @@ import { LocalDBService } from './services/local-db.service';
     UsuarioModule,
     EditorFichaModule,
     ArquetipoModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [OnlineOfflineService, LocalDBService],
   bootstrap: [AppComponent]

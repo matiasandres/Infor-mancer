@@ -1,6 +1,14 @@
 <mat-tab-group>
     <div *ngFor="let arquetipo of ficha.arquetipos">
         <mat-tab label="{{arquetipo.nombre}}">
+            <ng-template mat-tab-label>
+                {{arquetipo.nombre}}
+                <span class="pointer" mat-icon-button (click)="ModificarFicha()"  data-toggle="tooltip" data-placement="button" title="Guardar cambios">
+                    <i class="material-icons md-36">
+                        save
+                    </i>
+                </span>
+            </ng-template>
             <app-editor-arquetipos [ficha]="ficha" [arquetipo]="arquetipo"></app-editor-arquetipos>
         </mat-tab>
     </div>

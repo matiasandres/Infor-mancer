@@ -7,7 +7,7 @@ import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { EditorArquetiposComponent } from './components/editor-arquetipos/editor-arquetipos.component';
 import { DatosPacienteComponent } from './components/datos-paciente/datos-paciente.component';
 import { PestanasArquetipoComponent } from './components/pestanas-arquetipo/pestanas-arquetipo.component';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule, MatSidenavModule} from '@angular/material';
 import { AgregarPacienteComponent } from './components/agregar-paciente/agregar-paciente.component';
 import { ArquetipoModule } from '../arquetipo/arquetipo.module';
 
@@ -21,7 +21,8 @@ import { ArquetipoModule } from '../arquetipo/arquetipo.module';
     FormsModule,
     MatTabsModule,
     ReactiveFormsModule,
-    ArquetipoModule
+    ArquetipoModule,
+    MatSidenavModule
   ], 
   providers: [FichaService,
   FormBuilder]

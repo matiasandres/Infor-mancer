@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
 import { OnlineOfflineService } from 'src/app/services/online-offline.service';
 
@@ -9,7 +9,7 @@ import { OnlineOfflineService } from 'src/app/services/online-offline.service';
 })
 export class NavbarComponent implements OnInit {
 
-
+  @Input() drawer
   constructor(
     public _usuarioService: UsuarioService,
     private online: OnlineOfflineService
@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
 
   conectado=true;
   ngOnInit() {
-    
+
   }
   logout(){
     this._usuarioService.logout();  // cierra la sesion con el metodo del servicio de Usuario
