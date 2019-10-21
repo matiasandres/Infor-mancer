@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLiveLabel">Importar arquetipos</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
             </button>
@@ -25,10 +25,14 @@
             <div class="row">
                 <div class="col-12 col-md-12">                      
                     <div class="accordion" id="accordionExample">
-                        <div class="form-inline">
+                        <div class="input-group form-inline">
                             <form>                        
                                 <input type="text" (keyup)="formatea($event)" class="form-control mx-sm-3 mb-2" [(ngModel)]="rut" name="rut" placeholder="12.345.678-9" required/>
-                                <button type="submit" class="btn btn-primary mb-2" (click)="buscarFicha()" >Buscar Ficha</button>
+                                <span class="pointer" data-toggle="modal" (click)="buscarFicha()" title="Buscar ficha paciente">
+                                    <i class="material-icons add">
+                                        search
+                                    </i>
+                                </span>
                                 <span class="pointer" data-toggle="modal" data-target="#exampleModalLive"  title="Agregar arquetipo">
                                     <i class="material-icons add">
                                         add_box

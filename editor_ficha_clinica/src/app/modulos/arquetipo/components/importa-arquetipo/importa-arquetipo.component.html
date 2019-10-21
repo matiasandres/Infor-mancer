@@ -17,8 +17,12 @@
 </div>
 <br>
 <div class="row"  *ngIf=" _usuarioService.isParamedico()">
-  <div class="col-12">
-    <input type="text" class="form-control" [(ngModel)]="arquetipo.nombre" name="nombre" placeholder="Nombre de Arquetipo" required>
-    <button class="btn btn-primary" type="submit" (click)="subir()">Subir Arquetipo</button>
+  <div class="input-group">
+    <input type="text" class="form-control" [(ngModel)]="arquetipo.nombre" name="nombre" placeholder="Nombre de Arquetipo" required>&nbsp;
+    <span data-toggle="modal" (click)="subir()" title="Buscar ficha paciente">
+      <i class="material-icons md-18 icono">
+        cloud_upload
+      </i>
+    </span>
   </div>
 </div>
