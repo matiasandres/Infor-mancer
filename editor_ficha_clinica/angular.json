@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ficha-clinica",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,7 +67,7 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "ficha-clinica:build:production"
+              "browserTarget": "ficha-clinica:build"
             }
           }
         },

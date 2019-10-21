@@ -9,7 +9,7 @@
                         <button type="submit" class="btn btn-primary mb-2" (click)="buscarFicha()" >Buscar Ficha</button><br><br>
                     </form>
                 </div>
-                <div class="card" *ngIf="ficha && _usuarioService.isMedico() || _usuarioService.isParamedico() || _usuarioService.isSecretaria()">
+                <div class="card" *ngIf="ficha && (_usuarioService.isMedico() || _usuarioService.isParamedico() || _usuarioService.isSecretaria())">
                     <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -24,7 +24,7 @@
                     
                     </div>
                 </div>
-                <div class="card" *ngIf="ficha&&ficha.arquetipos.length >0 && _usuarioService.isAdmin() || _usuarioService.isParamedico() ">
+                <div class="card" *ngIf="ficha && (ficha.arquetipos.length >0 && _usuarioService.isAdmin() || _usuarioService.isParamedico()) ">
                     <div class="card-header" id="headingTwo">
                     <h5 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
