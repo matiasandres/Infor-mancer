@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Paciente } from '../../models/paciente.model';
 import { Ficha } from '../../models/ficha.model';
 import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-paciente',
@@ -14,11 +15,19 @@ import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service
 export class AgregarPacienteComponent implements OnInit {
   pacienteForm: FormGroup;
   ficha;
+
+  rut;
   constructor(private _fichaService: FichaService,
     public _usuarioService: UsuarioService,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
+    
+      this.rut = this.route.snapshot.params.rut;
+      console.log("RUTUUT", this.rut);
+
     this.pacienteForm = this.formBuilder.group({
       nombre: ['',Validators.required],
       rut: ['',Validators.required],

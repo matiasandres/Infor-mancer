@@ -55,7 +55,7 @@ export class FichaComponent implements OnInit {
               cancelButtonAriaLabel: 'no'
           })
           if (confirm) {
-            this.router.navigateByUrl('/paciente');
+            this.router.navigateByUrl('/paciente?rut='+this.rut);
           }
         })()
         this.ficha = f;

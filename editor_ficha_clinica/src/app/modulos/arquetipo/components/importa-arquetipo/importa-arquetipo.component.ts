@@ -28,16 +28,12 @@ export class ImportaArquetipoComponent implements OnInit {
     this.arquetipo.campos = [];
     this.archivo = f.target.files[0];
     var reader = new FileReader();
-    //console.log("Archivo::", this.archivo);
-    reader.onloadend = (e)=>{
+    reader.onloadend = (e)=>{   // termina de leer el archivo
       var parser = new DOMParser();
-      var xmlDoc = parser.parseFromString(reader.result.toString(),"text/xml");
-      /* console.log("ARCHIVO::", reader.result);
-      console.log("ARCHIVO::", this.xmlToJson(xmlDoc)); */
-      if(this.archivo.type=='text/xml'){
-        this.xml = this.xmlToJson(xmlDoc);
-        console.log(this.xml);
-        for(let a of this.xml['archetype']['ontology']['term_definitions'][0].items){
+      var xmlDoc = parser.parseFromString(reader.result.toString(),"text/xml");   // convierte a formato XML, para leer sus etiquetas
+      if(this.archivo.type=='text/xml'){    
+        this.xml = this.xmlToJson(xmlDoc);    // convierte a JSON el XML
+        for(let a of this.xml['archetype']['ontology']['term_definitions'][0].items){   // busca en el JSON la etiqueta para agregarlo al objeto JSON
           this.arquetipo.campos.push({ 
                                         nombre:       a.items[0]['#text'],
                                         descripcion:  a.items[1]['#text'],
@@ -45,32 +41,26 @@ export class ImportaArquetipoComponent implements OnInit {
                                     });
         }
       }
-      var cortado = reader.result.toString().split('\n');
+      /* var cortado = reader.result.toString().split('\n');
       var cort =[];
       var incluye = false;
       for(let i in cortado){
         if(incluye){
           cort.push(cortado[i]);
-          //console.log("TEXTO:::",cortado[i].substring(cortado[i].lastIndexOf('<')+1, cortado[i].lastIndexOf('>')));
         }
-        if(cortado[i].includes('ontology')){          
-          //console.log(cortado[i]);
+        if(cortado[i].includes('ontology')){  
           incluye = true;
         }
-      }
-      //console.log(cort);
-      //console.log("CORTADO::::", cortado);
-      //console.log("LEIDO::::", reader.result);
+      } */
     };
     reader.readAsText(this.archivo);
   }
 
   subir(){
-    if( !this.arquetipo.nombre ||this.arquetipo.nombre.length==0){
+    if( !this.arquetipo.nombre ||this.arquetipo.nombre.length==0){    // valida que tenga un nombre el arquetipo nuevo
       return Swal.fire('Error','El Arquetipo debe contener un nombre','error');
     }
     this._arquetipoService.agregarArquetipo(this.arquetipo).subscribe(res=>{
-      console.log(res);
       if(res.ok){
         this.arquetipo = new Arquetipo();
         this.addArquetipo.emit(res.arquetipo);
@@ -80,13 +70,9 @@ export class ImportaArquetipoComponent implements OnInit {
     })
   }
 
-  xmlToJson(xml) {
-	
-    // Create the return object
-    var obj = {};
-  
-    if (xml.nodeType == 1) { // element
-      // do attributes
+  xmlToJson(xml) {	
+    var obj = {}; // objeto a devolver  
+    if (xml.nodeType == 1) { 
       if (xml.attributes.length > 0) {
       obj["@attributes"] = {};
         for (var j = 0; j < xml.attributes.length; j++) {
@@ -97,8 +83,7 @@ export class ImportaArquetipoComponent implements OnInit {
     } else if (xml.nodeType == 3) { // text
       obj = xml.nodeValue;
     }
-  
-    // do children
+    // busca nodos hijos en el XML
     if (xml.hasChildNodes()) {
       for(var i = 0; i < xml.childNodes.length; i++) {
         var item = xml.childNodes.item(i);

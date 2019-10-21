@@ -6,7 +6,6 @@ import { EDITOR_FICHA_ROUTES } from './editor-ficha.routes';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { EditorArquetiposComponent } from './components/editor-arquetipos/editor-arquetipos.component';
 import { DatosPacienteComponent } from './components/datos-paciente/datos-paciente.component';
-import { PestanasArquetipoComponent } from './components/pestanas-arquetipo/pestanas-arquetipo.component';
 import { MatTabsModule, MatSidenavModule} from '@angular/material';
 import { AgregarPacienteComponent } from './components/agregar-paciente/agregar-paciente.component';
 import { ArquetipoModule } from '../arquetipo/arquetipo.module';
@@ -14,7 +13,7 @@ import { ArquetipoModule } from '../arquetipo/arquetipo.module';
 
 
 @NgModule({
-  declarations: [FichaComponent, EditorArquetiposComponent, DatosPacienteComponent, PestanasArquetipoComponent, AgregarPacienteComponent],
+  declarations: [FichaComponent, EditorArquetiposComponent, DatosPacienteComponent, AgregarPacienteComponent],
   imports: [
     CommonModule,
     EDITOR_FICHA_ROUTES,

@@ -17,12 +17,9 @@
 
 <mat-sidenav-container class="css-container" hasBackdrop="false">
     <mat-sidenav #drawer mode="side">
-            <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
-        
+        <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
      </mat-sidenav>
-        
-    <mat-sidenav-content>
-       
+    <mat-sidenav-content>       
         <div class="contenedor">
         <div *ngIf="!conectado" class="alert alert-danger" role="alert">Sin Conexión al servidor. Datos seran guardados localmente</div>
             <div class="row">
