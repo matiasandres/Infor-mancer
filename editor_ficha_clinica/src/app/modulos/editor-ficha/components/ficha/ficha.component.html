@@ -1,9 +1,31 @@
-<mat-drawer-container class="example-container" hasBackdrop="false">
+ <!-- Modal -->
+ <div id="exampleModalLive" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <app-importa-arquetipo></app-importa-arquetipo>
+        </div>
+        </div>
+    </div>
+</div>
+
+<mat-drawer-container class="css-container" hasBackdrop="false">
+    <div class="css-drawer">
     <mat-drawer #drawer mode="side">
-         <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
+        <div appSimpleBar class="drawer">
+            <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
+        </div>
      </mat-drawer>
+    </div>
         
     <mat-drawer-content>
+       
         <div class="contenedor">
         <div *ngIf="!conectado" class="alert alert-danger" role="alert">Sin Conexión al servidor. Datos seran guardados localmente</div>
             <div class="row">
@@ -12,7 +34,12 @@
                         <div class="form-inline">
                             <form>                        
                                 <input type="text" (keyup)="formatea($event)" class="form-control mx-sm-3 mb-2" [(ngModel)]="rut" name="rut" placeholder="12.345.678-9" required/>
-                                <button type="submit" class="btn btn-primary mb-2" (click)="buscarFicha()"  >Buscar Ficha</button>
+                                <button type="submit" class="btn btn-primary mb-2" (click)="buscarFicha()" >Buscar Ficha</button>
+                                <span class="pointer" data-toggle="modal" data-target="#exampleModalLive"  title="Agregar arquetipo">
+                                    <i class="material-icons add">
+                                        add_box
+                                    </i>
+                                </span>
                             </form>
                         </div>
                 <div class="card" *ngIf="ficha && (_usuarioService.isMedico() || _usuarioService.isParamedico() || _usuarioService.isSecretaria())">
@@ -36,7 +63,7 @@
                                 Arquetipos
                                 </button>
                                 <span class="pointer" mat-icon-button (click)="drawer.toggle()" data-toggle="tooltip" data-placement="button" title="Mostrar/Ocultar lista arquetipos">
-                                    <i class="material-icons md-36">
+                                    <i class="material-icons list">
                                         list
                                     </i>
                                 </span>
@@ -56,11 +83,12 @@
                     <div *ngIf="!ficha">
                     </div>
                 </div>
-<!--                 <div class="col-12 col-md-2">
+            <!--<div class="col-12 col-md-2">
                     <app-lista-arquetipos (enviaArquetipo)="recibeArquetipo($event)" [agregar_arquetipo]="agregar_arquetipo"></app-lista-arquetipos>
                 </div> -->
             </div>
         </div>
+        
     </mat-drawer-content>
 </mat-drawer-container>    
 

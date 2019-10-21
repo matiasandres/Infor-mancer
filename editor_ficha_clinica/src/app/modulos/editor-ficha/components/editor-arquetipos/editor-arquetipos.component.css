@@ -3,8 +3,9 @@
 }
 
 .material-icons.md-36{
-    position: relative;
-    top: 2px;
-    font-size: 20px; 
-    text-align: left;
+    position: absolute;
+    font-size: 36px; 
+    top:0;
+    right: 0; 
+    padding-left: 0;
 }

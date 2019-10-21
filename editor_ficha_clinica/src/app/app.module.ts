@@ -29,7 +29,7 @@ import { LocalDBService } from './services/local-db.service';
     MatTabsModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [OnlineOfflineService, LocalDBService],
   bootstrap: [AppComponent]

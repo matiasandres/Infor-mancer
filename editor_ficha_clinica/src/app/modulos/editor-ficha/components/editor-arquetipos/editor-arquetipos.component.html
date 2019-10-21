@@ -7,14 +7,15 @@
         <mat-tab>
             <ng-template mat-tab-label>
                 {{arquetipo.nombre}}&nbsp;
-                <div *ngIf="arquetipo.editable">
-                    <span class="pointer" mat-icon-button (click)="ModificarFicha()"  data-toggle="tooltip" data-placement="button" title="Guardar cambios">
-                        <i class="material-icons md-36">
-                            save
-                        </i>
-                    </span>
-                </div>
+
             </ng-template>
+            <div *ngIf="arquetipo.editable">
+                <span class="pointer" mat-icon-button (click)="ModificarFicha()"  data-toggle="tooltip" data-placement="button" title="Guardar cambios">
+                    <i class="material-icons md-36">
+                        save
+                    </i>
+                </span>
+            </div><br>
             Usuario Ingresa:<input class="form-control" type="text" [(ngModel)]="usuario" disabled>
             <hr>
             <div *ngFor="let a of arquetipo.campos">

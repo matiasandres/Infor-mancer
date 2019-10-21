@@ -5,7 +5,17 @@
     cursor: pointer;
 }
 
-.material-icons.md-36 {
+.material-icons.list{
+    position: relative;
+    top: 10px;
+    font-size: 30px; 
+    text-align: end;
+    
+}
+.css-container{
+    height: 100%;
+}
+.material-icons.add {
     position: relative;
     top: 10px;
     font-size: 30px; 
