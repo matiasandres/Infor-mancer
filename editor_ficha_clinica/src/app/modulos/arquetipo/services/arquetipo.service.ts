@@ -10,7 +10,7 @@ export class ArquetipoService {
 
   constructor(private http: HttpClient, private _usuarioService: UsuarioService) { }
 
-  agregarArquetipo(arquetipo){
+  agregarArquetipo(arquetipo){    
     return this.http.post<any>(URL_ARQUETIPO+`/${this._usuarioService.getToken()}` ,arquetipo);
   }
   getArquetipos(){

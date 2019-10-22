@@ -18,10 +18,10 @@ export class ListaArquetiposComponent implements OnInit {
   @Input() agregar_arquetipo = false;
   @Output() enviaArquetipo = new EventEmitter();
 
-  arquetipos:Arquetipo[];
-  arquetipos_all: Arquetipo[];
-  treeControl: NestedTreeControl<Arquetipo>;
-  dataSource = new MatTreeNestedDataSource<Arquetipo>();
+  arquetipos:Arquetipo[];     // lista de arquetipos a mostrar
+  arquetipos_all: Arquetipo[];  // lista de arquetipos para filtrar
+  treeControl: NestedTreeControl<Arquetipo>;    // Objeto para mostrar la lista
+  dataSource = new MatTreeNestedDataSource<Arquetipo>();    // 
   dataChange: BehaviorSubject<Arquetipo[]> = new BehaviorSubject<Arquetipo[]>([]);
   contectado = true;  
   constructor(private _arquetipoService: ArquetipoService,
@@ -29,14 +29,14 @@ export class ListaArquetiposComponent implements OnInit {
             private _localDBService: LocalDBService,
             public _usuarioService: UsuarioService
             ){
-              this._conectado.conectado.subscribe(res=>{
+              this._conectado.conectado.subscribe(res=>{    // chequea q este conectado al servidor e internet con el servicio
                 if(res != this.contectado){
-                  this.contectado = res;
-                  this.cargarAquetipos();
+                  this.contectado = res;      // asigna la variable de conexion y regstra cambios cuando lo haya 
+                  this.cargarAquetipos();     //  vuelve a cargar la lista de arquetipos si hay un cambio en la conexion
                 }
               });
-              this.treeControl = new NestedTreeControl<Arquetipo>(node => node.campos);
-              this.dataChange.subscribe(data=>this.dataSource.data= data);
+              this.treeControl = new NestedTreeControl<Arquetipo>(node => node.campos);  
+              this.dataChange.subscribe(data=>this.dataSource.data= data);      // actualiza los datos de la lista si hay algun cambio en los datos
    }
 
   
@@ -45,19 +45,17 @@ export class ListaArquetiposComponent implements OnInit {
   }
 
   cargarAquetipos(){
-    if(this.contectado){
-      this._arquetipoService.getArquetipos().subscribe(res=>{
-        this.arquetipos = res;
-        this.arquetipos_all = res;
-        console.log("ARQS_ONLINE", res);
+    if(this.contectado){    
+      this._arquetipoService.getArquetipos().subscribe(res=>{     // pide los arquetipos a la API si hay conexion
+        this.arquetipos = res;                // arquetipos para mostrar
+        this.arquetipos_all = res;            // arquetipos para realizar el filtro
         return this.dataChange.next(this.arquetipos);  // carga la info para la lista de arquetipos
       });
     }
     else{
-      this._localDBService.getArquetipos().then(res =>{
-        console.log("ARQS_LOCAL", res);
-        this.arquetipos = res;
-        this.arquetipos_all = res;
+      this._localDBService.getArquetipos().then(res =>{       // pide los arquetipos desde la base de datos local si no hay conexion con la api
+        this.arquetipos = res;          // arquetipos para mostrar
+        this.arquetipos_all = res;       // arquetipos para realizar el filtro
         this.dataChange.next(this.arquetipos);  // carga la info para la lista de arquetipos
       })
     }
@@ -69,15 +67,13 @@ export class ListaArquetiposComponent implements OnInit {
     this.arquetipos.push(e);    // agrega al array el nuevo arquetipo cargado desde el form
     this.dataChange.next(this.arquetipos);  // actualiza la lista de arquetipos
   }
-  buscar = ""
+  buscar = "";    // input de busqueda de arquetipos
   filtrar(e){
-    console.log(e);
-    let filtrados = this.arquetipos.filter(x=>x.nombre.toLowerCase().includes(this.buscar.toLowerCase()));
-    this.dataChange.next(filtrados);
+    let filtrados = this.arquetipos.filter(x=>x.nombre.toLowerCase().includes(this.buscar.toLowerCase()));    // filtra la lista de arquetipos
+    this.dataChange.next(filtrados);      // actualiza la lista con la nueva lista filtrada
     if(this.buscar.length==0) this.dataChange.next(this.arquetipos)
   }
-  enviarArquetipo(a){
-    this.enviaArquetipo.emit(a);
-    console.log(a);
+  enviarArquetipo(a){     // agrega un arquetipo a una ficha
+    this.enviaArquetipo.emit(a);      // envia el arqutipo al componente padre
   }
 }

@@ -15,7 +15,7 @@
             Usuario Ingresa:<input class="form-control" type="text" [(ngModel)]="usuario" disabled>
             <hr>
             <div *ngFor="let a of arquetipo.campos">
-                {{a.nombre | titlecase}}: <input [disabled]="!arquetipo.editable" class="form-control" type="text" [(ngModel)]="a.valor" required>            
+                {{a.nombre | titlecase}}: <input [disabled]="arquetipo.editable" class="form-control" type="text" [(ngModel)]="a.valor" required>            
             </div>
         </mat-tab>
     </div>

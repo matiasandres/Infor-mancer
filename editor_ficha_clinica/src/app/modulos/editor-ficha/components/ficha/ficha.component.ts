@@ -27,7 +27,6 @@ export class FichaComponent implements OnInit {
     ) { 
       this._conexionService.conectado.subscribe(res=>{
         if(res && !this.conectado){
-          console.log("Actualiza DB");
           this._fichaService.syncFichas();
         }
         this.conectado=res;
@@ -55,7 +54,8 @@ export class FichaComponent implements OnInit {
               cancelButtonAriaLabel: 'no'
           })
           if (confirm) {
-            this.router.navigateByUrl('/paciente?rut='+this.rut);
+            this.router.navigate(['paciente'], {queryParams: {rut: this.rut}});
+            //this.router.navigateByUrl('/paciente?rut='+this.rut);
           }
         })()
         this.ficha = f;

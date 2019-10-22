@@ -11,7 +11,7 @@ import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service
 })
 export class ImportaArquetipoComponent implements OnInit {
 
-  @Output() addArquetipo = new EventEmitter();
+  @Output() addArquetipo = new EventEmitter();  //evento para agregar un nuevo arquetipo
 
   archivo;
   xml;

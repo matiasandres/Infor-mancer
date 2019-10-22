@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Paciente } from '../../models/paciente.model';
 import { Ficha } from '../../models/ficha.model';
 import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-paciente',
@@ -15,26 +15,25 @@ import { ActivatedRoute } from '@angular/router';
 export class AgregarPacienteComponent implements OnInit {
   pacienteForm: FormGroup;
   ficha;
-
-  rut;
+  rut='';
   constructor(private _fichaService: FichaService,
     public _usuarioService: UsuarioService,
     private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.rut = params['rut']; // recibe la variable de la url para completar en formulario
+    });
 
-    
-      this.rut = this.route.snapshot.params.rut;
-      console.log("RUTUUT", this.rut);
-
-    this.pacienteForm = this.formBuilder.group({
+    this.pacienteForm = this.formBuilder.group({    // Crea el formulario reactivo con validaciones y datos iniciales
       nombre: ['',Validators.required],
-      rut: ['',Validators.required],
+      rut: [this.rut,Validators.required],
       direccion: [''],
       fecha_nacimiento: [new Date(), Validators.required],
       prevision: ['Fonasa', Validators.required],
-      estatura_paciente: ['1',Validators.required],
+      estatura_paciente: ['100',Validators.required],
       grupo_sangre: ['A', Validators.required],
       rh: ['+', Validators.required],
       fono: ['',Validators.required],
@@ -43,7 +42,7 @@ export class AgregarPacienteComponent implements OnInit {
   }
 
   agregarPaciente(){
-    let newPaciente: Paciente = {
+    let newPaciente: Paciente = {     // crea el nuevo objeto Paciente con los datos del formulario
       nombre:                 this.pacienteForm.value.nombre,
       rut:                    this.pacienteForm.value.rut,
       genero:                 this.pacienteForm.value.genero,
@@ -56,18 +55,17 @@ export class AgregarPacienteComponent implements OnInit {
       fono:                   this.pacienteForm.value.fono
     };
     this._fichaService.agregarPaciente(newPaciente).subscribe(res=>{
-      if(!res.ok) return Swal.fire('Error', res.err.message,'error');
-      let newFicha: Ficha = {
+      if(!res.ok) return Swal.fire('Error', res.err.message,'error');   // termina la instruccion si recibe algun error muestra alerta
+      let newFicha: Ficha = {     // crea la nueva ficha con los datos del paciente recientemente agregado
                             folio: 0, 
                             paciente: res.paciente._id, 
                             fecha_ingreso: new Date(), 
                             arquetipos: [], 
                             last_update: new Date()
                           };
-      this._fichaService.agregarFicha(newFicha).subscribe(resp=>{
-          console.log(resp);
+      this._fichaService.agregarFicha(newFicha).subscribe(resp=>{   // genera la ficha con la peticion a la API
+          Swal.fire('Todo Bien', `Paciente <b>${res.paciente.rut}</b> Creado Correctamente`).then(r=> this.router.navigate(['ficha']));
       });
-      Swal.fire('Todo Bien', `Paciente <b>${res.paciente.rut}</b> Creado Correctamente`);
     });
   }
 

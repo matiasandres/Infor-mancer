@@ -53,7 +53,8 @@ app.post('/paciente',mdVerificaToken.verificaToken,(req,res)=>{
         prevision: body.prevision,
         grupo_sangre: body.grupo_sangre,
         estatura_paciente: body.estatura_paciente,
-        fono: body.fono
+        fono: body.fono,
+        rh: body.rh
     })
     paciente.save((err, newPaciente)=>{
         if (err){
