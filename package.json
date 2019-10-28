@@ -1,0 +1,20 @@
+{
+  "name": "Infor-mancer",
+  "version": "1.0.0",
+  "description": "Proyecto taller de integracion II 2019 ## Editor Ficha Clínica Universal  Plataforma web que permite la creación de fichas clínicas universales dinámicas las cuales creadas bajo la convergencia de datos, información y conocimiento que entrega el sistema de estructuras de arquetipos definido en los estándares de openEHR.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matiasandres/Infor-mancer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matiasandres/Infor-mancer/issues"
+  },
+  "homepage": "https://github.com/matiasandres/Infor-mancer#readme"
+}
