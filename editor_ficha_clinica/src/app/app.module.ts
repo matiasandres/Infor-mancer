@@ -8,10 +8,12 @@ import { appRoutingModule } from './app.routes';
 import { InicioComponent } from './inicio/inicio.component';
 import { EditorFichaModule } from './modulos/editor-ficha/editor-ficha.module';
 import { ArquetipoModule } from './modulos/arquetipo/arquetipo.module';
-import  {MatTabsModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import {MatTabsModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { SidevarComponent } from './shared/comnponents/sidevar/sidevar.component';
 import { OnlineOfflineService } from './services/online-offline.service';
 import { LocalDBService } from './services/local-db.service';
+import { AboutComponent } from './modulos/about/about.component';
+import { HeroesComponent } from './modulos/heroes/heroes.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { LocalDBService } from './services/local-db.service';
     NavbarComponent,
     SidevarComponent,
     InicioComponent,
+    AboutComponent,
+    HeroesComponent,
   ],
   imports: [
     BrowserModule,
