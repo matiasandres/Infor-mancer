@@ -13,7 +13,9 @@ import { SidevarComponent } from './shared/comnponents/sidevar/sidevar.component
 import { OnlineOfflineService } from './services/online-offline.service';
 import { LocalDBService } from './services/local-db.service';
 import { AboutComponent } from './modulos/about/about.component';
-import { HeroesComponent } from './modulos/heroes/heroes.component';
+
+
+import { NoticiasModule } from './modulos/noticias/noticias.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { HeroesComponent } from './modulos/heroes/heroes.component';
     SidevarComponent,
     InicioComponent,
     AboutComponent,
-    HeroesComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { HeroesComponent } from './modulos/heroes/heroes.component';
     EditorFichaModule,
     ArquetipoModule,
     MatTabsModule,
+    NoticiasModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,

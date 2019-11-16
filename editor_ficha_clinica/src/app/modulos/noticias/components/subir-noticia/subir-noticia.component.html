@@ -1,0 +1,30 @@
+<!-- pipe para limitacion de caracteres truncar form-control nombre input que esta en el ts-->
+<div class="card-body">
+        <form class="was-validated" [formGroup]="noticiasForm" (ngSubmit)="subir()"> 
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Titular de la Noticia</label>
+                    <input type="text" formControlName='titulo' class="form-control is-invalid" id="validationTextarea" placeholder="Example input" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="validationTextarea">Resumen de la Noticia </label>
+                  <textarea class="form-control is-invalid" formControlName='resumen'id="validationTextarea" placeholder="180 caracteres como maximo " required maxlength="180"></textarea>
+               
+                </div>
+               
+                <div class="mb-4">
+                        <label for="validationTextarea">Cuerpo de la Noticia </label>
+                        <textarea class="form-control is-invalid" formControlName='cuerpo'id="validationTextarea" placeholder="2000 caracteres como maximo " required maxlength="2000"></textarea>
+                </div>
+                
+                <label for="validationTextarea">Imagen del Cuerpo</label>
+                <div class="custom-file">
+                    <input type="file" formControlName='imagen'class="custom-file-input" id="validatedCustomFile" required>
+                    <label class="custom-file-label" for="validatedCustomFile">PNG,JPG</label>            
+                </div>
+                
+                <br><br>
+                <button [disabled]="noticiasForm.invalid" type="submit" class="btn btn-primary">Crear</button>
+                      
+        </form>
+</div>
