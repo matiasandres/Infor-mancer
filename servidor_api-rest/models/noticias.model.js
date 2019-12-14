@@ -1,12 +1,12 @@
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
-//Datos Fijos
+
 
 //Opcion de Conteo de Visitas 
 
 
-const detalleSchema=new Schema({
+const noticiaSchema=new Schema({
     titulo:{type:String},
     resumen:{type:String},
     cuerpo:{type:String},
@@ -14,4 +14,4 @@ const detalleSchema=new Schema({
 
 })
 
-module.exports= mongoose.model('noticia',detalleSchema);
+module.exports= mongoose.model('noticia',noticiaSchema);

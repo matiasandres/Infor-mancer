@@ -9,9 +9,9 @@ import { URL_NOTICIAS } from 'src/app/config/config';
 export class NoticiasService {
 
   constructor(public http: HttpClient,
-    private _usuarioService: UsuarioService) { }
+      private _usuarioService: UsuarioService) { }
 
-  getFichas(){
+  getNoticias(){
     return this.http.get<any>(URL_NOTICIAS+`/${this._usuarioService.getToken()}`);
   }
 
