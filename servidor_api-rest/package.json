@@ -1,7 +1,7 @@
 {
   "name": "servidor_api-rest",
   "version": "1.0.0",
-  "description": "Servidor de Proyecto Fichca Clinica Dinamica, NodeJS, Express, Mongoose",
+  "description": "Servidor de Proyecto Ficha Clinica Dinamica, NodeJS, Express, Mongoose",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -25,7 +25,7 @@ export class FichaService {
   }
   async syncFichas(){
     let fichas;
-    await this._localDBService.getFichas().then(res=>{      
+    await this._localDBService.getFichas().then(res=>{
       fichas = {fichas:res};
       this.http.post<any>(URL_FICHAS+`/fichas/${this._usuarioService.getToken()}`,fichas).subscribe(res=>{
         if(res.ok){
