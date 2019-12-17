@@ -26,6 +26,7 @@ import { NoticiasModule } from './modulos/noticias/noticias.module';
     AboutComponent,
 
 
+
   ],
   imports: [
     BrowserModule,

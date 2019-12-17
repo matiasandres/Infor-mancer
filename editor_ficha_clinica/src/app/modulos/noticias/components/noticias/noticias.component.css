@@ -1,0 +1,15 @@
+#images{
+    width: 25%;
+    height: 25%;
+    align-self: center;
+    
+}
+
+#title{
+    text-align: center;
+}
+
+strong, #resume {
+    font-weight: bold;
+}
+

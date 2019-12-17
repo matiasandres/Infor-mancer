@@ -21,9 +21,9 @@ export class NoticiasComponent implements OnInit {
   dataChange: BehaviorSubject<Noticia[]> = new BehaviorSubject<Noticia[]>([]);
   contectado = true;
 
-  _noticiasService: any;
+ 
   constructor(
-    _noticiasService: NoticiasService,
+    private _noticiasService: NoticiasService,
     private _localDBService: LocalDBService,
 ) { }
 
@@ -33,10 +33,7 @@ export class NoticiasComponent implements OnInit {
     
   }
   cargarNoticias(){
-    this._noticiasService.getNoticias().subscribe(res => {
-      this.noticias = res;
-      console.log(res);
-    });
+    this._noticiasService.getNoticias().subscribe(res => {this.noticias_all=res});
 
     
   }

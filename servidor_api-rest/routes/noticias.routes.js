@@ -36,7 +36,7 @@ app.post('/',mdVerificaToken.verificaToken, (req, res) => {
 });
 
 app.get('/',(req,res)=>{
-    Noticia.find({_id:req.params.id})
+    Noticia.find()
         .exec((err,noticias)=>{
             if (err){
                 return res.status(400).json({
