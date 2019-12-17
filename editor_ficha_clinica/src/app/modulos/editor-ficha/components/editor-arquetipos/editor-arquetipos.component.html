@@ -4,7 +4,7 @@
             <ng-template mat-tab-label>
                 {{arquetipo.nombre}}&nbsp;
             </ng-template>
-            <div>
+            <div *ngIf = "arquetipo.editable">
                 <span class="pointer" mat-icon-button (click)="ModificarFicha(i)"  data-toggle="tooltip" data-placement="button" title="Guardar cambios" >
                     <i class="material-icons md-36">save </i> 
                 </span>
