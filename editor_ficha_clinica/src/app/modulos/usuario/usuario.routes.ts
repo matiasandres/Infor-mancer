@@ -12,7 +12,7 @@ const usuarioRouting: Routes = [
         {
             path: 'perfil',
             component: PerfilComponent,
-            canActivate: [AuthGuardService],
+            canActivate: [AuthGuardService, AuthGuardService],
             data: { title: 'Perfil' }
         },
         {

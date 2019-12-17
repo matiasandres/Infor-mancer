@@ -9,6 +9,7 @@ import { DatosPacienteComponent } from './components/datos-paciente/datos-pacien
 import { MatTabsModule, MatSidenavModule} from '@angular/material';
 import { AgregarPacienteComponent } from './components/agregar-paciente/agregar-paciente.component';
 import { ArquetipoModule } from '../arquetipo/arquetipo.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 
@@ -21,7 +22,8 @@ import { ArquetipoModule } from '../arquetipo/arquetipo.module';
     MatTabsModule,
     ReactiveFormsModule,
     ArquetipoModule,
-    MatSidenavModule
+    MatSidenavModule,
+    PipesModule
   ], 
   providers: [FichaService,
   FormBuilder]

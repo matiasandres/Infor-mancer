@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../models/usuario.model';
-import { URL_SERVICIOS, URL_USUARIOS } from 'src/app/config/config';
+import { URL_SERVICIOS, URL_USUARIOS, URL_UPLOAD } from 'src/app/config/config';
 import swal from 'sweetalert2';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class UsuarioService {
   login_verificado: true;
   constructor( 
     private router: Router, // manejador de rutas
-    public http: HttpClient,
+    public http: HttpClient
 
     ) { 
 
@@ -99,8 +99,30 @@ export class UsuarioService {
   verificar2FA(verificar){
     return this.http.post<any>(URL_SERVICIOS+'/login/2fa', verificar); // devuelve true o false, de la verificacion del token con el codigo
   }
+  subirVariosArchivosRuta( archivos: File[], item:string, id:string ) {
+    const file = new FormData();
+    for(let a in archivos){
+        file.append('archivo'+a, archivos[a]);
+    }
+    return this.http.post(URL_UPLOAD+'/'+item+'/'+id + this.getToken(), file);
+}
 
-  actualizarUsuario() { 
+  
+  actualizarUsuario(fotos?: File[]) { 
+    if(fotos){
+      var id = this.usuario._id;
+      this.subirVariosArchivosRuta(fotos, 'usuarios', id).subscribe(res => {
+          let respuesta = <any>{};
+          respuesta = res;
+          for(let f of respuesta.archivos){
+            this.usuario.imagen = 'usuarios/'+id+'/' + f; // ruta de la imagen
+          }
+          this.actualizarUsuario().subscribe(res=> {
+            this.usuario = res.usuario;
+            this.guardarStorage();
+          });
+      });
+  }
     return this.http.put<any>(URL_USUARIOS + '/' + this.getToken(), this.usuario);    // devuelve del backend el objeto {usuario: usuarioModificado, toke: nuevoTokenGenerado}
   }
   updateUsuario(user) { 

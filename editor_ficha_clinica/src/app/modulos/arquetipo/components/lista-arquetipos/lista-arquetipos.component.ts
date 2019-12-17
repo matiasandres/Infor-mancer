@@ -74,6 +74,7 @@ export class ListaArquetiposComponent implements OnInit {
     if(this.buscar.length==0) this.dataChange.next(this.arquetipos)
   }
   enviarArquetipo(a){     // agrega un arquetipo a una ficha
+    a.editable = true;
     this.enviaArquetipo.emit(a);      // envia el arqutipo al componente padre
   }
 }

@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { UsuarioService } from 'src/app/modulos/usuario/services/usuario.service';
 import { LocalDBService } from 'src/app/services/local-db.service';
 import { OnlineOfflineService } from 'src/app/services/online-offline.service';
+import { Ficha } from '../../models/ficha.model';
 
 @Component({
   selector: 'app-editor-arquetipos',
@@ -12,7 +13,7 @@ import { OnlineOfflineService } from 'src/app/services/online-offline.service';
 })
 export class EditorArquetiposComponent implements OnInit {
 
-  @Input() ficha:any;
+  @Input() ficha:Ficha;
   @Input() arquetipo:any;
   aRay = [];  
   usuario;
@@ -23,13 +24,15 @@ export class EditorArquetiposComponent implements OnInit {
     , private _localDBService: LocalDBService) {
       this._conectadoService.conectado.subscribe(res=>{this.conectado=res})
 
-      console.log("FICHHASHAS___", this.ficha);
      }
 
   ngOnInit() {
     this.usuario = this._usuarioService.usuario.email;    
   }
-  ModificarFicha(){    
+  ModificarFicha(i){  
+
+    this.ficha.arquetipos[i].editable = false;
+
     if(this.conectado){
       this._fichaService.putModificarFicha(this.ficha).subscribe(ficha=>{
         if (ficha) return Swal.fire({

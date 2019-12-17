@@ -1,5 +1,6 @@
 export class Arquetipo {
     nombre: string;
-    campos: any[];  
+    campos: any[]; 
+    editable: boolean; 
     _id?: string;
 }

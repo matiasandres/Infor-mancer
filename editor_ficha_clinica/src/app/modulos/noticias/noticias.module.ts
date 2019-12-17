@@ -6,17 +6,18 @@ import { NoticiasService } from './services/noticias.service';
 import { NoticiasComponent } from './components/noticias/noticias.component';
 import { NOTICIAS_ROUTES } from './noticias.routes';
 import { EditarNoticiaComponent } from './components/editar-noticia/editar-noticia.component';
-import { ImagenPipe } from 'src/app/pipes/imagen.pipe';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 
 @NgModule({
-  declarations: [SubirNoticiaComponent, NoticiasComponent, EditarNoticiaComponent, ImagenPipe],
+  declarations: [SubirNoticiaComponent, NoticiasComponent, EditarNoticiaComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NOTICIAS_ROUTES
+    NOTICIAS_ROUTES,
+    PipesModule
 
   ], 
   providers: [NoticiasService,

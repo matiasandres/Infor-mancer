@@ -29,7 +29,7 @@ export class NoticiasService {
           let respuesta = <any>{};
           respuesta = res;
           for(let f of respuesta.archivos){
-            noticia.imagen = 'noticias/'+id+'/' + f;
+            noticia.imagen = 'noticias/'+id+'/' + f; // ruta de la imagen
           }
           this.putModificarNoticia(noticia).subscribe();
       });

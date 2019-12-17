@@ -14,6 +14,7 @@ import { OnlineOfflineService } from './services/online-offline.service';
 import { LocalDBService } from './services/local-db.service';
 import { AboutComponent } from './modulos/about/about.component';
 import { NoticiasModule } from './modulos/noticias/noticias.module';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { NoticiasModule } from './modulos/noticias/noticias.module';
     NavbarComponent,
     SidevarComponent,
     InicioComponent,
-    AboutComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +35,7 @@ import { NoticiasModule } from './modulos/noticias/noticias.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    PipesModule
   ],
   providers: [OnlineOfflineService, LocalDBService],
   bootstrap: [AppComponent]

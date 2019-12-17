@@ -19,6 +19,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
     FormsModule, 
     NgxQRCodeModule,
     ReactiveFormsModule,
+    PipesModule,
     
     /* == Angular Material == */
     BrowserAnimationsModule,

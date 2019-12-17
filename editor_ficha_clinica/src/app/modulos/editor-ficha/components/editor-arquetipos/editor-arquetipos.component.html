@@ -1,18 +1,18 @@
 <mat-tab-group>
-    <div *ngFor="let arquetipo of ficha.arquetipos">
+    <div *ngFor="let arquetipo of ficha.arquetipos; let i = index">
         <mat-tab>
             <ng-template mat-tab-label>
                 {{arquetipo.nombre}}&nbsp;
             </ng-template>
             <div>
-                <span class="pointer" mat-icon-button (click)="ModificarFicha()"  data-toggle="tooltip" data-placement="button" title="Guardar cambios" >
+                <span class="pointer" mat-icon-button (click)="ModificarFicha(i)"  data-toggle="tooltip" data-placement="button" title="Guardar cambios" >
                     <i class="material-icons md-36">save </i> 
                 </span>
             </div><br>
             Usuario Ingresa:<input class="form-control" type="text" [(ngModel)]="usuario" disabled>
             <hr>
             <div *ngFor="let a of arquetipo.campos">
-                {{a.nombre | titlecase}}: <input [disabled]="arquetipo.editable" class="form-control" type="text" [(ngModel)]="a.valor" required>            
+                {{a.nombre | titlecase}}: <input [disabled]="!arquetipo.editable" class="form-control" type="text" [(ngModel)]="a.valor" required>            
             </div>
         </mat-tab>
     </div>

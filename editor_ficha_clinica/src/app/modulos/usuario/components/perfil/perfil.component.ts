@@ -14,6 +14,9 @@ export class PerfilComponent implements OnInit {
 
   usuario: Usuario;
   passwordForm: FormGroup;
+
+  public filesToUpload: Array<File> = [];
+
   constructor(
     private _usuarioService: UsuarioService,
     private formBuilder: FormBuilder
@@ -56,6 +59,13 @@ export class PerfilComponent implements OnInit {
       this._usuarioService.usuario = res.usuario;
       this._usuarioService.guardarStorage();
     });
+  }
+
+  fileChangeEvent(filesInput: any) {     // agrega los archivos al arreglo para luego subirlos al servidor
+    this.filesToUpload = filesInput.target.files;
+  }
+  subirImagen(){
+    this._usuarioService.actualizarUsuario(this.filesToUpload).subscribe();
   }
 
 }
