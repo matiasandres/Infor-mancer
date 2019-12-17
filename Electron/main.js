@@ -1,13 +1,13 @@
-// Modules to control application life and create native browser window
+// Módulos para controlar la vida de la aplicación y crear una ventana de navegador nativa
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
+// Mantenga una referencia global del objeto de la ventana, si no lo hace, la ventana
+// se cerrará automáticamente cuando el objeto JavaScript se recolecte basura.
 let mainWindow
 
 function createWindow () {
-  // Create the browser window.
+  // Crea la ventana del navegador.
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 750,
@@ -16,38 +16,38 @@ function createWindow () {
     }
   })
 
-  // and load the index.html of the app.
+  // y cargue el index.html de la app.
   mainWindow.loadFile('dist/index.html')
 
-  // Open the DevTools.
+  // Abre las DevTools.
   // mainWindow.webContents.openDevTools()
 
-  // Emitted when the window is closed.
+  // Emitido cuando la ventana está cerrada.
   mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
+    // Desreferenciar el objeto de la ventana, generalmente almacenaría ventanas
+    // en una matriz si su aplicación admite ventanas múltiples, este es el momento
+    // cuando debería eliminar el elemento correspondiente.
     mainWindow = null
   })
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
+// Este método se llamará cuando Electron haya terminado
+// inicialización y está listo para crear ventanas de navegador.
+// Algunas API solo se pueden usar después de que ocurra este evento.
 app.on('ready', createWindow)
 
-// Quit when all windows are closed.
+// Salga cuando todas las ventanas estén cerradas.
 app.on('window-all-closed', function () {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
+  // En macOS es común para las aplicaciones y su barra de menú.
+  // permanecer activo hasta que el usuario se cierre explícitamente con Cmd + Q
   if (process.platform !== 'darwin') app.quit()
 })
 
 app.on('activate', function () {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
+  // En macOS es común volver a crear una ventana en la aplicación cuando
+  // se hace clic en el icono de la base y no hay otras ventanas abiertas.
   if (mainWindow === null) createWindow()
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+// En este archivo puede incluir el resto del proceso principal específico de su aplicación
+// código. También puede ponerlos en archivos separados y solicitarlos aquí.
