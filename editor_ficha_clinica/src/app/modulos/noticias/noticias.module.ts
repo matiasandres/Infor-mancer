@@ -5,11 +5,13 @@ import { SubirNoticiaComponent } from './components/subir-noticia/subir-noticia.
 import { NoticiasService } from './services/noticias.service';
 import { NoticiasComponent } from './components/noticias/noticias.component';
 import { NOTICIAS_ROUTES } from './noticias.routes';
+import { EditarNoticiaComponent } from './components/editar-noticia/editar-noticia.component';
+import { ImagenPipe } from 'src/app/pipes/imagen.pipe';
 
 
 
 @NgModule({
-  declarations: [SubirNoticiaComponent, NoticiasComponent],
+  declarations: [SubirNoticiaComponent, NoticiasComponent, EditarNoticiaComponent, ImagenPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -18,6 +20,9 @@ import { NOTICIAS_ROUTES } from './noticias.routes';
 
   ], 
   providers: [NoticiasService,
-  FormBuilder]
+  FormBuilder],
+  exports:[
+    NoticiasComponent
+  ]
 })
 export class NoticiasModule { }

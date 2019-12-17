@@ -1,29 +1,19 @@
 <h1>Noticias </h1>
-
 <hr>
- 
-    <h1></h1>             
-
-
-        
-            
-        
-  
 <div *ngFor="let a of noticias_all">
-
     <div class="card">
-        <br>
-    <img class="card-img-top" src="./././assets/images/hospital.jpg" alt="Card image cap" id="images">
-    <div class="card-body">
-        <h2 class="card-title" id='title'>{{a.titulo}}</h2>
-        <p class="card-text" id='resume'><strong><em>{{a.resumen}}</em></strong></p>
-
-        <p class="card-text">{{a.cuerpo}}</p>
-      </div>
-      
-  </div>
-    
-  <br>  
-        
-      </div>
+        <div class="row">
+            <div class="col-3">
+                <img class="card-img-top" [src]="a.imagen | imagen" alt="Card image cap" id="images">
+            </div>
+            <div class="col-9">
+                <div class="card-body">
+                    <h2 class="card-title" id='title'>{{a.titulo}}</h2>
+                    <p class="card-text" id='resume'><strong><em>{{a.resumen}}</em></strong></p>
+                    <p class="card-text">{{a.cuerpo}}</p>
+                </div>
+            </div>
+        </div>
+  </div>         
+</div>
 

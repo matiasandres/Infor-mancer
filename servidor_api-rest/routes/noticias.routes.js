@@ -48,11 +48,14 @@ app.get('/',(req,res)=>{
         })
 });
 
-
-
-
-
-
-
-
+app.put('/:id',mdVerificaToken.verificaToken,(req,res)=>{
+    console.log(req.body);
+    Noticia.findOneAndUpdate({_id:req.params.id},
+        req.body,
+        {new: true},
+        (err, noticia_nueva)=>{
+            if (err) res.status(400).json(err)
+            res.status(200).json({noticia:noticia_nueva, ok:true})
+        })
+});
 module.exports = app;

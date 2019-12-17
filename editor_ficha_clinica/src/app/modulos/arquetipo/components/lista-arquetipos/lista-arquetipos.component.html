@@ -11,11 +11,22 @@
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
         <li>
             <div class="mat-tree-node">     
-                {{node.nombre}}&nbsp;
+               <!--  {{node.nombre}}&nbsp;
+                <mat-icon class="mat-icon-rtl-mirror">
+                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>  
                 <span *ngIf="agregar_arquetipo" class="pointer" style="color:rgb(0, 123, 255);" (click)="enviarArquetipo(node)" data-toggle="tooltip" data-placement="button" title="Agregar Arquetipo">
-                        <i class="material-icons md-18"> library_add</i> <!-- Boton para agregar un arquetipo -->
+                        <i class="material-icons md-18"> library_add</i> oton para agregar un arquetipo 
+                </span> -->
+                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.nombre">
+                <mat-icon class="mat-icon-rtl-mirror">
+                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>            
+                {{node.nombre}}
+                <span *ngIf="agregar_arquetipo" (click)="enviarArquetipo(node)" data-toggle="tooltip" data-placement="top" title="Agregar Arquetipo">
+                    <i class="material-icons md-18"> library_add</i> <!-- Boton para agregar un arquetipo -->
                 </span>
-
+                </button>
             </div>
             <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">     <!-- Muestra nodos hijos -->
                 <ng-container matTreeNodeOutlet></ng-container>

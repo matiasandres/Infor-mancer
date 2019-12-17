@@ -16,15 +16,11 @@ import { NoticiasService } from '../../services/noticias.service';
 export class NoticiasComponent implements OnInit {
   noticias: any;     // lista de arquetipos a mostrar
   noticias_all: Noticia[];  // lista de arquetipos para filtrar
-  treeControl: NestedTreeControl<Noticia>;    // Objeto para mostrar la lista
-  dataSource = new MatTreeNestedDataSource<Noticia>();    // 
-  dataChange: BehaviorSubject<Noticia[]> = new BehaviorSubject<Noticia[]>([]);
   contectado = true;
 
  
   constructor(
-    private _noticiasService: NoticiasService,
-    private _localDBService: LocalDBService,
+    private _noticiasService: NoticiasService
 ) { }
 
   ngOnInit() {
@@ -33,7 +29,9 @@ export class NoticiasComponent implements OnInit {
     
   }
   cargarNoticias(){
-    this._noticiasService.getNoticias().subscribe(res => {this.noticias_all=res});
+    this._noticiasService.getNoticias().subscribe(res => {
+      this.noticias_all=res;    // asigna las noticias recibidas desde el backend para mostrarlas
+    });
 
     
   }

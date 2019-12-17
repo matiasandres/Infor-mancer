@@ -13,8 +13,6 @@ import { SidevarComponent } from './shared/comnponents/sidevar/sidevar.component
 import { OnlineOfflineService } from './services/online-offline.service';
 import { LocalDBService } from './services/local-db.service';
 import { AboutComponent } from './modulos/about/about.component';
-
-
 import { NoticiasModule } from './modulos/noticias/noticias.module';
 
 @NgModule({
@@ -24,9 +22,6 @@ import { NoticiasModule } from './modulos/noticias/noticias.module';
     SidevarComponent,
     InicioComponent,
     AboutComponent,
-
-
-
   ],
   imports: [
     BrowserModule,
