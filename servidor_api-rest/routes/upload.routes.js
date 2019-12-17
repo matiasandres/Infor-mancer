@@ -20,15 +20,13 @@ app.post('/:item/:id', mdVerificaToken.verificaToken, (req, res) => {
     let usuario = req.usuario;
     let archivos = [];
 
-    console.log("asas");
-    if (!req.files) {
+    if (!req.files) {  // si no recibe archivo
         return res.status(400).json({
             ok: false,
             mensaje: 'No selecciono nada',
             errors: { message: 'Debe de seleccionar un archivo' }
         });
     }
-
     Object.keys(req.files).forEach(file => {
         // Obtener nombre del archivo
         let archivo = req.files[file];
@@ -36,7 +34,7 @@ app.post('/:item/:id', mdVerificaToken.verificaToken, (req, res) => {
         let extensionArchivo = nombreCortado[nombreCortado.length - 1].toLowerCase();
 
         // Sólo estas extensiones aceptamos
-        let extensionesValidas = ['png', 'jpg', 'jpeg', 'gif', 'jpeg', 'pdf', 'doc', 'docx', 'xls', 'xlsx'];
+        let extensionesValidas = ['png', 'jpg', 'jpeg', 'gif', 'jpeg'];
 
         if (extensionesValidas.indexOf(extensionArchivo) < 0) {
             return res.status(400).json({
